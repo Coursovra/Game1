@@ -16,7 +16,8 @@ public class Checkpoint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player"){
+        if (other.CompareTag("Player"))
+        {
             GameManager.instance.SetSpawnPoint(transform.position);
             Checkpoint[] allCP = FindObjectsOfType<Checkpoint>();
             for (int i = 0; i < allCP.Length; i++){

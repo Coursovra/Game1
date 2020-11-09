@@ -61,7 +61,7 @@ public class HealthManager : MonoBehaviour
             }
             else
             {
-                PlayerController.instance.Knockback();
+                PlayerController.instance.StartKnockBack();
                 invincCounter = invincibleLength;
             }
         }

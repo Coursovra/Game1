@@ -4,23 +4,12 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    // Start is called before the first frame update
     public int healAmount;
     public bool isFullHeal;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
 

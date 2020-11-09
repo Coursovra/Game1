@@ -9,13 +9,11 @@ public class UIManager : MonoBehaviour
     public Image blackScreen;
     public float fadeSpeed = 1f;
     public bool fadeToBlack, fadeFromBlack;
+
     public void Awake()
     {
         instance = this;
-    }
-    void Start()
-    {
-
+        blackScreen.enabled = true;
     }
     // Update is called once per frame
     void Update()
@@ -27,10 +25,9 @@ public class UIManager : MonoBehaviour
             {
                 fadeToBlack = false;
             }
-
         }
         if (fadeFromBlack)
-        {
+        {            
             blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 0f, fadeSpeed * Time.deltaTime));
             if (blackScreen.color.a == 0f)
             {
