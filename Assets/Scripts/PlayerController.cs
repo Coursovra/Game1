@@ -15,13 +15,13 @@ public class PlayerController : MonoBehaviour
     private float _rotateSpeed;
     private float _turnSmoothVelocity;
     private float _turnSmoothTime = 0.01f;
-    private float _knockBackLength = 1f;
+    private float _knockBackLength = .5f;
     private float _knockbackCounter;
     private float _groundDistance = 0.4f;
     private bool _isKnocking;
     private bool _isGrounded;
     private Vector3 _movementDirection;
-    private Vector2 _knockbackPower = new Vector2(1f, 1f);
+    private Vector2 _knockbackPower = new Vector2(3f, 8f);
     private CharacterController _characterController;
     [SerializeField]
     private Transform _groundCheck;
@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 _movementDirection.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+   
             }
 
         }
@@ -75,35 +76,26 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat("Speed", Mathf.Abs(moveDir.x) + Mathf.Abs(moveDir.z));
         _animator.SetBool("Grounded", _characterController.isGrounded);
     }
-
+    
+    Vector3 moveDir = Vector3.zero;
     private void KnockBack()
-    {
-        _knockbackCounter -= Time.deltaTime;
-
-        float yStore = _movementDirection.y;
-        _movementDirection = playerModel.transform.forward * -_knockbackPower.x;
-        _movementDirection.y = yStore;
-
-        if (_isGrounded)
-        {
-            _movementDirection.y = 0f;
-        }
-
-        _movementDirection.y += Physics.gravity.y * Time.deltaTime * _gravityScale;
-        _characterController.Move(_movementDirection * Time.deltaTime);
-
+    {       
+        moveDir = playerModel.transform.forward * -_knockbackPower.x;
+        moveDir.y += _gravity * Time.deltaTime;
+        _characterController.Move(moveDir * Time.deltaTime);
         if (_knockbackCounter <= 0)
         {
             _isKnocking = false;
         }
+        _knockbackCounter -= Time.deltaTime;
     }
 
     public void StartKnockBack()
     {
         _isKnocking = true;
         _knockbackCounter = _knockBackLength;
-        _movementDirection.y = _knockbackPower.y;
-        _characterController.Move(_movementDirection * Time.deltaTime);
+        moveDir.y = _knockbackPower.y;
+        _characterController.Move(moveDir * Time.deltaTime);
     }
 
     private void Awake()
