@@ -6,6 +6,8 @@ public class HealthPickup : MonoBehaviour
 {
     public int healAmount;
     public bool isFullHeal;
+    public GameObject HealthParticles;
+    private float _lifeTime = 2;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +23,7 @@ public class HealthPickup : MonoBehaviour
             {
                 HealthManager.instance.AddHealth(healAmount);
             }
+            Destroy(Instantiate(HealthParticles, transform.position, Quaternion.identity), _lifeTime);
         }
     }
 }

@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private Vector3 respawnPosition;
-    public GameObject deathEffect;
+    public GameObject DeathEffect;
+    public Transform PlayerTransform;
     private void Awake()
     {
         instance = this;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerController.instance.gameObject.SetActive(false);
         UIManager.instance.fadeToBlack = true;
-        Instantiate(deathEffect);
+        Instantiate(DeathEffect, PlayerTransform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
         UIManager.instance.fadeFromBlack = true;
         PlayerController.instance.transform.position = respawnPosition;

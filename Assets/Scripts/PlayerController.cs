@@ -65,12 +65,14 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
-                _movementDirection.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
-   
+                _movementDirection.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);   
             }
-
         }
-        _movementDirection.y += _gravity * Time.deltaTime;
+        else
+        {
+            _movementDirection.y += _gravity * Time.deltaTime;
+        }
+
         _characterController.Move(_movementDirection * Time.deltaTime);
 
         _animator.SetFloat("Speed", Mathf.Abs(moveDir.x) + Mathf.Abs(moveDir.z));

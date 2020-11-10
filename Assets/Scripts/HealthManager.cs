@@ -18,7 +18,7 @@ public class HealthManager : MonoBehaviour
     }
     void Start()
     {
-        currentHealth = maxHealth;
+
     }
 
     // Update is called once per frame
@@ -58,6 +58,7 @@ public class HealthManager : MonoBehaviour
             {
                 currentHealth = 0;
                 GameManager.instance.Respawn();
+                ResetHealth();
             }
             else
             {
