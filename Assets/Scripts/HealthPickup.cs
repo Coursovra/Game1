@@ -24,6 +24,7 @@ public class HealthPickup : MonoBehaviour
                 HealthManager.instance.AddHealth(healAmount);
             }
             Destroy(Instantiate(HealthParticles, transform.position, Quaternion.identity), _lifeTime);
+            AudioManager.instance.PlaySFX(8);
         }
     }
 }

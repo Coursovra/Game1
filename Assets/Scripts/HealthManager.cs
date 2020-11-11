@@ -6,11 +6,10 @@ public class HealthManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static HealthManager instance;
-
-    public int currentHealth, maxHealth;
-
-    public float invincibleLength = 2f;
-    private float invincCounter;
+    public int CurrentHealth, MaxHealth;
+    private float _invincibleLength = 2f;
+    private float _invincCounter;
+    public Sprite[] HealthBarImages = new Sprite[5];
 
     private void Awake()
     {
@@ -18,19 +17,19 @@ public class HealthManager : MonoBehaviour
     }
     void Start()
     {
-
+        ResetHealth();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (invincCounter > 0)
+        if (_invincCounter > 0)
         {
-            invincCounter -= Time.deltaTime;
+            _invincCounter -= Time.deltaTime;
 
             for (int i = 0; i < PlayerController.instance.playerPieces.Length; i++)
             {
-                if (Mathf.Floor(invincCounter * 5f) % 2 == 0)
+                if (Mathf.Floor(_invincCounter * 5f) % 2 == 0)
                 {
                     PlayerController.instance.playerPieces[i].SetActive(true);
                 }
@@ -40,7 +39,7 @@ public class HealthManager : MonoBehaviour
                 }
 
 
-                if (invincCounter <= 0)
+                if (_invincCounter <= 0)
                 {
                     PlayerController.instance.playerPieces[i].SetActive(true);
                 }
@@ -50,35 +49,73 @@ public class HealthManager : MonoBehaviour
 
     public void Hurt()
     {
-        if (invincCounter <= 0)
+        if (_invincCounter <= 0)
         {
-            currentHealth--;
+            CurrentHealth--;
 
-            if (currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
-                currentHealth = 0;
-                GameManager.instance.Respawn();
-                ResetHealth();
+                CurrentHealth = 0;
+                GameManager.instance.Respawn();       
             }
             else
             {
                 PlayerController.instance.StartKnockBack();
-                invincCounter = invincibleLength;
+                _invincCounter = _invincibleLength;
             }
+            UpdateUI();
+            AudioManager.instance.PlaySFX(7);
         }
     }
 
     public void ResetHealth()
     {
-        currentHealth = maxHealth;
+        UIManager.instance.HealthImage.enabled = true;
+        CurrentHealth = MaxHealth;
+        UpdateUI();
     }
 
     public void AddHealth(int amountToHeal)
     {
-        currentHealth += amountToHeal;
-        if (currentHealth > maxHealth)
+        CurrentHealth += amountToHeal;
+        if (CurrentHealth > MaxHealth)
         {
-            currentHealth = maxHealth;
+            CurrentHealth = MaxHealth;
         }
+        UIManager.instance.HealthImage.enabled = true;
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        UIManager.instance.HealthText.text = CurrentHealth.ToString();
+        switch (CurrentHealth)
+        {
+            case 5:
+                UIManager.instance.HealthImage.sprite = HealthBarImages[4];
+                break;
+            case 4:
+                UIManager.instance.HealthImage.sprite = HealthBarImages[3];
+                break;
+            case 3:
+                UIManager.instance.HealthImage.sprite = HealthBarImages[2];
+                break;
+
+            case 2:
+                UIManager.instance.HealthImage.sprite = HealthBarImages[1];
+                break;
+            case 1:
+                UIManager.instance.HealthImage.sprite = HealthBarImages[0];
+                break;
+            case 0:
+                UIManager.instance.HealthImage.enabled = false;
+                break;
+        }
+    }
+
+    public void PlayerKilled()
+    {
+        CurrentHealth = 0;
+        UpdateUI();
     }
 }

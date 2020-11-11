@@ -7,8 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public Image blackScreen;
-    public float fadeSpeed = 1f;
-    public bool fadeToBlack, fadeFromBlack;
+    private float _fadeSpeed = 1f;
+    public bool FadeToBlack, FadeFromBlack;
+    public Text HealthText;
+    public Image HealthImage;
+    public Text coinText;
+    public GameObject PauseScreen;
+    public GameObject OptionsScreen;
 
     public void Awake()
     {
@@ -18,21 +23,56 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fadeToBlack)
+        if (FadeToBlack)
         {
-            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 1f, fadeSpeed * Time.deltaTime));
+            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 1f, _fadeSpeed * Time.deltaTime));
             if (blackScreen.color.a == 1f)
             {
-                fadeToBlack = false;
+                FadeToBlack = false;
             }
         }
-        if (fadeFromBlack)
+        if (FadeFromBlack)
         {            
-            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 0f, fadeSpeed * Time.deltaTime));
+            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 0f, _fadeSpeed * Time.deltaTime));
             if (blackScreen.color.a == 0f)
             {
-                fadeFromBlack = false;
+                FadeFromBlack = false;
             }
         }
     }
+    public void Resume()
+    {
+        GameManager.instance.PauseUnpause();
+    }
+
+    public void OpenOptions()
+    {
+        OptionsScreen.SetActive(true);
+    }
+
+    public void CloseOptions()
+    {
+        OptionsScreen.SetActive(false);
+    }
+
+    public void LevelSelect()
+    {
+
+    }
+
+    public void MainMenu()
+    {
+
+    }
+
+    public void SetMusicLevel()
+    {
+
+    }
+
+    public void SetSFXLevel()
+    {
+
+    }
+
 }

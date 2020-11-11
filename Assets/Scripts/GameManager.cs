@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private Vector3 respawnPosition;
     public GameObject DeathEffect;
     public Transform PlayerTransform;
+    public int CurrentCoins;
     private void Awake()
     {
         instance = this;
@@ -15,35 +16,72 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UIManager.instance.fadeFromBlack = true;
+        UIManager.instance.FadeFromBlack = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         respawnPosition = PlayerController.instance.transform.position;
-        
+        AddCoins(0);
     }
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        { 
+            PauseUnpause();
+        }
+
     }
+
+
 
     public void Respawn()
     {
         StartCoroutine(RespawnCo());
     }
+
     public IEnumerator RespawnCo()
     {
+        HealthManager.instance.PlayerKilled();
         PlayerController.instance.gameObject.SetActive(false);
-        UIManager.instance.fadeToBlack = true;
+        UIManager.instance.FadeToBlack = true;
         Instantiate(DeathEffect, PlayerTransform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
-        UIManager.instance.fadeFromBlack = true;
+        UIManager.instance.FadeFromBlack = true;
         PlayerController.instance.transform.position = respawnPosition;
         PlayerController.instance.gameObject.SetActive(true);
+        HealthManager.instance.ResetHealth();
     }
 
     public void SetSpawnPoint(Vector3 newSpawnPoint)
     {
         respawnPosition = newSpawnPoint;
+    }
+
+    public void AddCoins(int coinsToAdd)
+    {
+        CurrentCoins += coinsToAdd;
+        UIManager.instance.coinText.text = " " + CurrentCoins;
+    }
+
+    public void PauseUnpause()
+    {
+        if (UIManager.instance.PauseScreen.activeInHierarchy)
+        {
+            UIManager.instance.PauseScreen.SetActive(false);
+            Time.timeScale = 1f;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            UIManager.instance.PauseScreen.SetActive(true);
+            UIManager.instance.CloseOptions();
+            Time.timeScale = 0f;
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
     }
 }
