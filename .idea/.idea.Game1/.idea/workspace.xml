@@ -27,7 +27,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Unity" />
+    <property name="settings.editor.selected.configurable" value="discord-application" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -61,7 +61,9 @@
       <workItem from="1605374928143" duration="249000" />
       <workItem from="1605375196651" duration="150000" />
       <workItem from="1605375370003" duration="63000" />
-      <workItem from="1605375455174" duration="1733000" />
+      <workItem from="1605375455174" duration="2432000" />
+      <workItem from="1605380577811" duration="61000" />
+      <workItem from="1605380666044" duration="34000" />
     </task>
     <servers />
   </component>
@@ -78,9 +80,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="842" y="459" key="LayersDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605375397242" />
-    <state x="781" y="344" key="SettingsEditor" timestamp="1605375545704">
+    <state x="781" y="344" key="SettingsEditor" timestamp="1605380699063">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605375545704" />
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605380699063" />
   </component>
 </project>
