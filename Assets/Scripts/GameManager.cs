@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private Vector3 respawnPosition;
     public GameObject DeathEffect;
+    public GameObject UI;
     public Transform PlayerTransform;
     public int CurrentCoins;
     private void Awake()
@@ -26,13 +27,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
-        { 
+        {
             PauseUnpause();
         }
-
     }
-
-
 
     public void Respawn()
     {
@@ -60,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int coinsToAdd)
     {
         CurrentCoins += coinsToAdd;
-        UIManager.instance.coinText.text = " " + CurrentCoins;
+        UIManager.instance.coinText.text = CurrentCoins.ToString();
     }
 
     public void PauseUnpause()
@@ -72,8 +70,9 @@ public class GameManager : MonoBehaviour
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            UI.SetActive(false);
         }
-        else
+        else //paused
         {
             UIManager.instance.PauseScreen.SetActive(true);
             UIManager.instance.CloseOptions();
@@ -81,6 +80,7 @@ public class GameManager : MonoBehaviour
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            UI.SetActive(true);
         }
 
     }

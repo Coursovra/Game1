@@ -9,18 +9,21 @@ public class UIManager : MonoBehaviour
     public Image blackScreen;
     private float _fadeSpeed = 1f;
     public bool FadeToBlack, FadeFromBlack;
-    public Text HealthText;
+    public Text HealthText;
     public Image HealthImage;
     public Text coinText;
     public GameObject PauseScreen;
     public GameObject OptionsScreen;
+    public GameObject Buttons;
+    public GameObject PauseText;
+
 
     public void Awake()
     {
         instance = this;
         blackScreen.enabled = true;
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (FadeToBlack)
@@ -48,11 +51,13 @@ public class UIManager : MonoBehaviour
     public void OpenOptions()
     {
         OptionsScreen.SetActive(true);
+        SwitchUI(false);
     }
 
     public void CloseOptions()
     {
         OptionsScreen.SetActive(false);
+        SwitchUI(true);
     }
 
     public void LevelSelect()
@@ -73,6 +78,12 @@ public class UIManager : MonoBehaviour
     public void SetSFXLevel()
     {
 
+    }
+
+    public void SwitchUI(bool value)
+    {
+        Buttons.SetActive(value);
+        PauseText.SetActive(value);
     }
 
 }
