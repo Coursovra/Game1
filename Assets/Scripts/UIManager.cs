@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class UIManager : MonoBehaviour
     public GameObject OptionsScreen;
     public GameObject Buttons;
     public GameObject PauseText;
+    public AudioMixer AudioMixer;
+
 
 
     public void Awake()
@@ -70,15 +73,16 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void SetMusicLevel()
+    public void SetMusicLevel(float value)
     {
-
+        AudioMixer.SetFloat("MusicValue", value);
     }
 
-    public void SetSFXLevel()
+    public void SetSFXLevel(float value)
     {
-
+        AudioMixer.SetFloat("SfxValue", value);
     }
+
 
     public void SwitchUI(bool value)
     {
