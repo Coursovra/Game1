@@ -16,6 +16,9 @@
             </e>
           </e>
         </e>
+        <e p="Fantasy Skybox FREE" t="Include">
+          <e p="Readme.txt" t="Include" />
+        </e>
         <e p="New Folder" t="Include">
           <e p="Examples" t="Include">
             <e p="Editor" t="Include">
@@ -80,13 +83,13 @@
           <e p="Checkpoint.cs" t="Include" />
           <e p="CoinPuckup.cs" t="Include" />
           <e p="DestroyOtherTime.cs" t="Include" />
+          <e p="EnemyController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="HealthManager.cs" t="Include" />
           <e p="HealthPickup.cs" t="Include" />
           <e p="HurtPlayer.cs" t="Include" />
           <e p="KillPlayer.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
-          <e p="test.cs" t="Include" />
           <e p="UIManager.cs" t="Include" />
         </e>
       </e>
