@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            UI.SetActive(false);
+            UI.SetActive(true);
         }
         else //paused
         {
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            UI.SetActive(true);
+            UI.SetActive(false);
         }
 
     }

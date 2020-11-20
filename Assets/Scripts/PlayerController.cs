@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
     public GameObject playerModel;
     public GameObject[] playerPieces;
     public Transform _camera;
+    private Animator _animator;
     private float _moveSpeed = 6f; 
-    private float _jumpHeight = 0.8f;
+    private float _jumpHeight = 1f;
     private float _gravityScale = 4f;
     private float _gravity = -9.81f;
     private float _rotateSpeed;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
     [SerializeField]
     private Transform _groundCheck;
-    private Animator _animator;
+
     #endregion
 
     void Start()
