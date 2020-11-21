@@ -16,8 +16,18 @@
             </e>
           </e>
         </e>
+        <e p="BrokenVector" t="Include">
+          <e p="LowPolyTreePack" t="Include">
+            <e p="Readme.txt" t="Include" />
+          </e>
+        </e>
         <e p="Fantasy Skybox FREE" t="Include">
           <e p="Readme.txt" t="Include" />
+        </e>
+        <e p="Low Poly Graveyard" t="Include">
+          <e p="Materials" t="Include">
+            <e p="vertexcolorsstandard.shader" t="Include" />
+          </e>
         </e>
         <e p="New Folder" t="Include">
           <e p="Examples" t="Include">
@@ -78,12 +88,18 @@
             <e p="NavMeshSurfaceTests.cs" t="Include" />
           </e>
         </e>
+        <e p="PolyQuest_EvilVillage" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="FlyCam.cs" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="AudioManager.cs" t="Include" />
           <e p="Checkpoint.cs" t="Include" />
           <e p="CoinPuckup.cs" t="Include" />
           <e p="DestroyOtherTime.cs" t="Include" />
           <e p="EnemyController.cs" t="Include" />
+          <e p="EnemyControllerMainMenu.cs" t="Include" />
           <e p="EnemyHealthManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="HealthManager.cs" t="Include" />
