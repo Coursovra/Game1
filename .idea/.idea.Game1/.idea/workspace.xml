@@ -12,19 +12,30 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyHealthManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyControllerMainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PatrolPointsScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/HurtPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HurtEnemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PatrolPointsScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CoinPuckup.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EnemyHealthManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HealthPickup.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Checkpoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DestroyOtherTime.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HurtEnemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/KillPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HealthManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HurtPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyControllerMainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyControllerMainMenu.cs" />
       </list>
     </option>
   </component>
@@ -37,7 +48,7 @@
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="discord-application" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -80,6 +91,7 @@
       <workItem from="1605552642882" duration="4413000" />
       <workItem from="1605867804356" duration="19459000" />
       <workItem from="1605962711247" duration="4006000" />
+      <workItem from="1606053111458" duration="10777000" />
     </task>
     <servers />
   </component>
@@ -111,9 +123,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="842" y="459" key="LayersDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605375397242" />
-    <state x="781" y="344" key="SettingsEditor" timestamp="1605965709078">
+    <state x="781" y="344" key="SettingsEditor" timestamp="1606060809222">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1605965709078" />
+    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1606060809222" />
   </component>
 </project>

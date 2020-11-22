@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour
 
 {
+    #region fields
     private int _maxHealth = 2;
     private int _currentHealth;
+    #endregion
+
     void Start()
     {
         _currentHealth = _maxHealth;
@@ -26,6 +27,5 @@ public class EnemyHealthManager : MonoBehaviour
             AudioManager.instance.PlaySFX(6);
         }
     }
-
 
 }

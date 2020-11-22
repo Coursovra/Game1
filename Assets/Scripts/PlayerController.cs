@@ -4,13 +4,18 @@ public class PlayerController : MonoBehaviour
 {
     #region fields
     public static PlayerController instance;
-    public LayerMask _groundMask;
-    public GameObject playerModel;
-    public GameObject[] playerPieces;
-    public Transform _camera;
+    public LayerMask GroundMask;
+    public GameObject PlayerModel;
+    public GameObject[] PlayerPieces;
+    public Transform Camera;
+    private Vector3 _movementDirection;
+    private Vector2 _knockbackPower = new Vector2(3f, 8f);
+    private CharacterController _characterController;
+    [SerializeField]
+    private Transform _groundCheck;
     private Animator _animator;
-    private float _moveSpeed = 6f; 
-    private float _jumpHeight = 1f;
+    private float _moveSpeed = 6f;
+    private float _jumpHeight = 1f;
     private float _gravityScale = 4f;
     private float _gravity = -9.81f;
     private float _rotateSpeed;
@@ -21,12 +26,6 @@ public class PlayerController : MonoBehaviour
     private float _groundDistance = 0.4f;
     private bool _isKnocking;
     private bool _isGrounded;
-    private Vector3 _movementDirection;
-    private Vector2 _knockbackPower = new Vector2(3f, 8f);
-    private CharacterController _characterController;
-    [SerializeField]
-    private Transform _groundCheck;
-
     #endregion
 
     void Start()
@@ -34,8 +33,7 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
     }
-    // Update is called once per frame
-    void Update()
+    void Update()
     {
         if (!_isKnocking)
         {
@@ -53,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
         if (direction.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _camera.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
@@ -61,7 +59,7 @@ public class PlayerController : MonoBehaviour
             _characterController.Move(moveDir.normalized * (_moveSpeed * Time.deltaTime));
         }
 
-        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
+        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, GroundMask);
         if (_isGrounded)
         {
             if (Input.GetButtonDown("Jump"))
@@ -83,7 +81,7 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir = Vector3.zero;
     private void KnockBack()
     {       
-        moveDir = playerModel.transform.forward * -_knockbackPower.x;
+        moveDir = PlayerModel.transform.forward * -_knockbackPower.x;
         moveDir.y += _gravity * Time.deltaTime;
         _characterController.Move(moveDir * Time.deltaTime);
         if (_knockbackCounter <= 0)

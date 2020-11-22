@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    #region fields
     public static AudioManager instance;
     public AudioSource[] Music;
     public AudioSource[] Sfx;
     public int LevelMusicToPlay;
+    #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
         PlayMusic(LevelMusicToPlay);

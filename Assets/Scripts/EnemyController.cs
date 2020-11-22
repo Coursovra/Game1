@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+
 
 
 public class EnemyController : MonoBehaviour
 {
+    #region fields
     public static EnemyController instance;
     public Transform[] PatrolPoints;
     public NavMeshAgent Agent;
@@ -13,8 +14,8 @@ public class EnemyController : MonoBehaviour
     public GameObject Coin;
     public bool IsAlive = true;
     [SerializeField]
-    private int _currentPatrolPoint;
     private Collider[] SkeletonColliderArray;
+    private int _currentPatrolPoint;
     private float _groundDistance = 0.1f;
     private float _gravity = -9.81f;
     private float _waitAtPoint = 2f;
@@ -23,7 +24,6 @@ public class EnemyController : MonoBehaviour
     private float _attackRange = .7f;
     private float _attackSpeed = 1f;
     private float _attackCounter;
-
     public enum AIState
     {
         isIdle,
@@ -31,9 +31,8 @@ public class EnemyController : MonoBehaviour
         isChasing,
         isAttacking
     }
-
     AIState currentState;
-    // Start is called before the first frame update
+    #endregion
     void Start()
     {
         SkeletonColliderArray = GetComponentsInChildren<Collider>();
@@ -41,10 +40,13 @@ public class EnemyController : MonoBehaviour
         IsAlive = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        SkeletonMovement();
+    }
 
+    private void SkeletonMovement()
+    {
         float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
 
         if (IsAlive)
@@ -148,7 +150,6 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-
     private void Awake()
     {
         instance = this;
@@ -165,8 +166,6 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
         Instantiate(Coin, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
     }
-
-
 
 }
  

@@ -1,35 +1,41 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
-
 
 public class EnemyControllerMainMenu : MonoBehaviour
 {
-    public static EnemyControllerMainMenu instance;
+    #region field
     public Transform[] PatrolPoints;
     public NavMeshAgent Agent;
     public Animator Animation;
-    [SerializeField]
-    private int _currentPatrolPoint;
+    public int TakenPoint = 0;
+    public int CurrentPatrolPoint;
     private float _groundDistance = 0.1f;
     private float _waitAtPoint = 1;
     private float _waitCounter;
-
     public enum AIState
     {
         isIdle,
         isPatrolling
     }
-
     AIState currentState;
+    #endregion
+
+
+
     void Start()
     {
+        CurrentPatrolPoint = Random.Range(0, 11);
+        TakenPoint = CurrentPatrolPoint;
         _waitCounter = _waitAtPoint;
     }
 
-    // Update is called once per frame
+
     void Update()
+    {
+        SkeletonMovement();
+    }
+
+    private void SkeletonMovement()
     {
         switch (currentState)
         {
@@ -43,19 +49,19 @@ public class EnemyControllerMainMenu : MonoBehaviour
                 else
                 {
                     currentState = AIState.isPatrolling;
-                    Agent.SetDestination(PatrolPoints[_currentPatrolPoint].position);
+                    Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
                 }
 
                 break;
 
             case AIState.isPatrolling:
 
-                if (Agent.remainingDistance <= .1f)
+                if (Agent.remainingDistance <= .2f)
                 {
-                    _currentPatrolPoint = GetRandromPoint(_currentPatrolPoint);
-                    if (_currentPatrolPoint >= PatrolPoints.Length)
+                    CurrentPatrolPoint = GetRandromPoint(CurrentPatrolPoint);
+                    if (CurrentPatrolPoint >= PatrolPoints.Length)
                     {
-                        _currentPatrolPoint = GetRandromPoint(_currentPatrolPoint);
+                        CurrentPatrolPoint = GetRandromPoint(CurrentPatrolPoint);
                     }
 
                     currentState = AIState.isIdle;
@@ -66,49 +72,57 @@ public class EnemyControllerMainMenu : MonoBehaviour
 
                 break;
         }
-
     }
-
     private int GetRandromPoint(int currentPoint)
     {
+        _waitAtPoint = Random.Range(4, 11);
+        int point = 0;
         if (currentPoint == 0)
             return 1;
-        int point = Random.Range(0, 21);
-        if(currentPoint == 0 && point == 2 || currentPoint == 2 && point == 0 || (PatrolPoints[currentPoint].position - PatrolPoints[point].position).magnitude > 35 || currentPoint == point )
+        if (currentPoint == 1)
         {
-            point = Random.Range(0, 21);
-            //print("q");
-            //print(point);
-            //print(currentPoint);
+            point = Random.Range(1, 10);
+            while (point == 5 || point == 4 || point == TakenPoint)
+                point = Random.Range(2, 10);
+            TakenPoint = point;
+            return point;
         }
-        else
+
+        if (currentPoint == 2 || currentPoint == 3)
         {
-            return GetRandromPoint(currentPoint);
+            point = Random.Range(0, 10);
+            while (point == 0 || point == 10 || point == TakenPoint)
+                point = Random.Range(0, 10);
+            TakenPoint = point;
+            return point;
         }
-        return GetRandromPoint(currentPoint);
 
-        //_waitAtPoint = Random.Range(5, 16);
+        while (currentPoint == 4 || currentPoint == 5  ||point == TakenPoint)
+        {
+            point = Random.Range(2, 5);
+            while (point == 0 || point == 10 || point == TakenPoint)
+                point = Random.Range(0, 10);
+            TakenPoint = point;
+            return point;
+        }
 
-        // while((PatrolPoints[currentPoint].position - PatrolPoints[point].position).magnitude > 35)
-        // {
-        //     print((PatrolPoints[currentPoint].position - PatrolPoints[point].position).magnitude + " vector3");
-        //     point = Random.Range(0, 21);
-        //     print("r");
-        //     print(point);
-        //     print(currentPoint);
-        // }
 
-        // if (currentPoint != point)
-        //     return point;
+        for (int i = 6; i < 10; i++)
+        {
+            if (currentPoint == i)
+            {
+                point = Random.Range(0, 10);
+                while (point == 0 || point == 2 || point == 3  || point == 4 || point == 5  || point == TakenPoint)
+                    point = Random.Range(0, 10);
+                TakenPoint = point;
+                return point;
+            }
+        }
 
+
+
+
+        return point;
     }
-
-    // private float GetRange(int pointOne, int pointTwo)
-    // {
-    //     Vector3 first = PatrolPoints[pointOne].position;
-    //     Vector3 second = PatrolPoints[pointTwo].position;
-    //     return (Mathf.Abs(first - second));
-    // }
-
-
 }
+

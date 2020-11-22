@@ -1,25 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
-    public GameObject cpOn, cpOff;
+    public GameObject CpOn, CpOff;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (!cpOn.activeSelf)
+            if (!CpOn.activeSelf)
             {
                 AudioManager.instance.PlaySFX(3);
                 GameManager.instance.SetSpawnPoint(transform.position);
                 Checkpoint[] allCP = FindObjectsOfType<Checkpoint>();
                 for (int i = 0; i < allCP.Length; i++)
                 {
-                    allCP[i].cpOff.SetActive(true);
-                    allCP[i].cpOn.SetActive(false);
+                    allCP[i].CpOff.SetActive(true);
+                    allCP[i].CpOn.SetActive(false);
                 }
-                cpOff.SetActive(false);
-                cpOn.SetActive(true);
+                CpOff.SetActive(false);
+                CpOn.SetActive(true);
             }
         }
     }

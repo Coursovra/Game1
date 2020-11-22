@@ -1,27 +1,36 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region fields
     public static GameManager instance;
-    private Vector3 respawnPosition;
-    public GameObject DeathEffect;
+    public GameObject PlayerDeathEffect;
     public GameObject UI;
     public Transform PlayerTransform;
     public int CurrentCoins;
+    private Vector3 _respawnPosition;
+    #endregion
     private void Awake()
     {
         instance = this;
     }
-    // Start is called before the first frame update
     void Start()
     {
         UIManager.instance.FadeFromBlack = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        respawnPosition = PlayerController.instance.transform.position;
+        _respawnPosition = PlayerController.instance.transform.position;
         AddCoins(0);
+        if (Time.timeScale == 0f)
+        {
+            UIManager.instance.PauseScreen.SetActive(false);
+            Time.timeScale = 1f;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            UI.SetActive(true);
+        }
     }
 
     void Update()
@@ -37,28 +46,30 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RespawnCo());
     }
 
-    public IEnumerator RespawnCo()
+    private IEnumerator RespawnCo()
     {
         HealthManager.instance.PlayerKilled();
         PlayerController.instance.gameObject.SetActive(false);
         UIManager.instance.FadeToBlack = true;
-        Instantiate(DeathEffect, PlayerTransform.position, Quaternion.identity);
+        Instantiate(PlayerDeathEffect, PlayerTransform.position, Quaternion.identity);
+        AudioManager.instance.PlaySFX(7);
         yield return new WaitForSeconds(2f);
         UIManager.instance.FadeFromBlack = true;
-        PlayerController.instance.transform.position = respawnPosition;
+        PlayerController.instance.transform.position = _respawnPosition;
         PlayerController.instance.gameObject.SetActive(true);
         HealthManager.instance.ResetHealth();
+
     }
 
     public void SetSpawnPoint(Vector3 newSpawnPoint)
     {
-        respawnPosition = newSpawnPoint;
+        _respawnPosition = newSpawnPoint;
     }
 
     public void AddCoins(int coinsToAdd)
     {
         CurrentCoins += coinsToAdd;
-        UIManager.instance.coinText.text = CurrentCoins.ToString();
+        UIManager.instance.CoinText.text = CurrentCoins.ToString();
     }
 
     public void PauseUnpause()

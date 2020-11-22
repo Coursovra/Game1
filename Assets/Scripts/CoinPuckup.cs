@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CoinPuckup : MonoBehaviour
 {
-    public int value;
+    #region fields
+    public int _value;
     public GameObject CoinParticles;
     private float _lifeTime = 2;
-    public int SoundToPlay;
-
+    #endregion
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
-            GameManager.instance.AddCoins(value);
+            GameManager.instance.AddCoins(_value);
             Destroy(Instantiate(CoinParticles, transform.position, Quaternion.identity), _lifeTime);
             AudioManager.instance.PlaySFX(4);
         }

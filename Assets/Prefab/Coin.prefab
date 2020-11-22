@@ -110,9 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecbe6634f288d644a45cd9ba8241e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  _value: 1
   CoinParticles: {fileID: 3270887482701727584, guid: dac4d373568232640aa460bb5f7e0d4f, type: 3}
-  SoundToPlay: 5
 --- !u!95 &6090489123354234667
 Animator:
   serializedVersion: 3

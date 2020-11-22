@@ -1,46 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    #region fields
     public static UIManager instance;
-    public Image blackScreen;
-    private float _fadeSpeed = 1f;
+    public Image BlackScreen;
     public bool FadeToBlack, FadeFromBlack;
     public Text HealthText;
     public Image HealthImage;
-    public Text coinText;
+    public Text CoinText;
     public GameObject PauseScreen;
     public GameObject OptionsScreen;
     public GameObject Buttons;
     public GameObject PauseText;
     public AudioMixer AudioMixer;
-
+    private float _fadeSpeed = 1f;
+    #endregion
 
 
     public void Awake()
     {
         instance = this;
-        blackScreen.enabled = true;
+        // BlackScreen.enabled = true;
+        // PauseScreen.SetActive(false);
+        // GameManager.instance.UI.SetActive(true);
+    }
+
+    public void Start()
+    {
+        BlackScreen.enabled = true;
+        PauseScreen.SetActive(false);
+        GameManager.instance.UI.SetActive(true);
+        FadeFromBlack = true;
+
     }
 
     void Update()
     {
+        Fade();
+    }
+
+    private void Fade()
+    {
         if (FadeToBlack)
         {
-            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 1f, _fadeSpeed * Time.deltaTime));
-            if (blackScreen.color.a == 1f)
+            BlackScreen.color = new Color(BlackScreen.color.r, BlackScreen.color.g, BlackScreen.color.b, Mathf.MoveTowards(BlackScreen.color.a, 1f, _fadeSpeed * Time.deltaTime));
+            if (BlackScreen.color.a == 1f)
             {
                 FadeToBlack = false;
             }
         }
         if (FadeFromBlack)
-        {            
-            blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, Mathf.MoveTowards(blackScreen.color.a, 0f, _fadeSpeed * Time.deltaTime));
-            if (blackScreen.color.a == 0f)
+        {
+            BlackScreen.color = new Color(BlackScreen.color.r, BlackScreen.color.g, BlackScreen.color.b, Mathf.MoveTowards(BlackScreen.color.a, 0f, _fadeSpeed * Time.deltaTime));
+            if (BlackScreen.color.a == 0f)
             {
                 FadeFromBlack = false;
             }
@@ -70,7 +87,7 @@ public class UIManager : MonoBehaviour
 
     public void MainMenu()
     {
-
+        SceneManager.LoadScene("Scenes/MainMenu");
     }
 
     public void SetMusicLevel(float value)

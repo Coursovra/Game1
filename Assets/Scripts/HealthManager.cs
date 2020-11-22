@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    #region fields
     public static HealthManager instance;
+    public Sprite[] HealthBarImages = new Sprite[5];
     public int CurrentHealth, MaxHealth;
     private float _invincibleLength = 2f;
     private float _invincCounter;
-    public Sprite[] HealthBarImages = new Sprite[5];
-
+    #endregion
     private void Awake()
+
     {
         instance = this;
     }
@@ -20,39 +19,42 @@ public class HealthManager : MonoBehaviour
         ResetHealth();
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        DamageEffect();
+    }
+
+    public void DamageEffect()
     {
         if (_invincCounter > 0)
         {
             _invincCounter -= Time.deltaTime;
 
-            for (int i = 0; i < PlayerController.instance.playerPieces.Length; i++)
+            for (int i = 0; i < PlayerController.instance.PlayerPieces.Length; i++)
             {
                 if (Mathf.Floor(_invincCounter * 5f) % 2 == 0)
                 {
-                    PlayerController.instance.playerPieces[i].SetActive(true);
+                    PlayerController.instance.PlayerPieces[i].SetActive(true);
                 }
                 else
                 {
-                    PlayerController.instance.playerPieces[i].SetActive(false);
+                    PlayerController.instance.PlayerPieces[i].SetActive(false);
                 }
 
 
                 if (_invincCounter <= 0)
                 {
-                    PlayerController.instance.playerPieces[i].SetActive(true);
+                    PlayerController.instance.PlayerPieces[i].SetActive(true);
                 }
             }
         }
     }
-
     public void Hurt()
     {
         if (_invincCounter <= 0)
         {
             CurrentHealth--;
-
+            AudioManager.instance.PlaySFX(7);
             if (CurrentHealth <= 0)
             {
                 CurrentHealth = 0;
@@ -64,7 +66,6 @@ public class HealthManager : MonoBehaviour
                 _invincCounter = _invincibleLength;
             }
             UpdateUI();
-            AudioManager.instance.PlaySFX(7);
         }
     }
 

@@ -69,7 +69,7 @@ MonoBehaviour:
   Animation: {fileID: 604882133269729285}
   Coin: {fileID: 5351557875158994268, guid: d31c044cca2c8bd42aaff78d0ba270e9, type: 3}
   IsAlive: 1
-  _currentPatrolPoint: 0
+  SkeletonColliderArray: []
 --- !u!195 &351415737298533619
 NavMeshAgent:
   m_ObjectHideFlags: 0
