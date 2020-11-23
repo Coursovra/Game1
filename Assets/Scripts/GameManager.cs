@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseUnpause()
     {
-        if (UIManager.instance.PauseScreen.activeInHierarchy)
+        if (UIManager.instance.PauseScreen.activeInHierarchy && !LevelEnd.instance.IsGameEnd)
         {
             UIManager.instance.PauseScreen.SetActive(false);
             Time.timeScale = 1f;
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             UI.SetActive(true);
         }
-        else //paused
+        else if(!LevelEnd.instance.IsGameEnd)//paused
         {
             UIManager.instance.PauseScreen.SetActive(true);
             UIManager.instance.CloseOptions();

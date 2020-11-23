@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("Scenes/Tests");
+        SceneManager.LoadScene("Scenes/SelectLevel");
     }
 
     public void OpenOptions()
@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    
     public void SetMusicLevel(float value)
     {
         AudioMixer.SetFloat("MusicValue", value);

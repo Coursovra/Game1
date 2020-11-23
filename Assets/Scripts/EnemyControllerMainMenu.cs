@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyControllerMainMenu : MonoBehaviour
 {
-    #region field
+    #region fields
     public Transform[] PatrolPoints;
     public NavMeshAgent Agent;
     public Animator Animation;
@@ -25,6 +25,7 @@ public class EnemyControllerMainMenu : MonoBehaviour
     void Start()
     {
         CurrentPatrolPoint = Random.Range(0, 11);
+        transform.position = PatrolPoints[CurrentPatrolPoint].position;
         TakenPoint = CurrentPatrolPoint;
         _waitCounter = _waitAtPoint;
     }
@@ -41,7 +42,6 @@ public class EnemyControllerMainMenu : MonoBehaviour
         {
             case AIState.isIdle:
                 Animation.SetBool("IsMoving", false);
-
                 if (_waitCounter > 0)
                 {
                     _waitCounter -= Time.deltaTime;
@@ -79,7 +79,7 @@ public class EnemyControllerMainMenu : MonoBehaviour
         int point = 0;
         if (currentPoint == 0)
             return 1;
-        if (currentPoint == 1)
+        while (currentPoint == 1 || point == TakenPoint)
         {
             point = Random.Range(1, 10);
             while (point == 5 || point == 4 || point == TakenPoint)
@@ -88,7 +88,7 @@ public class EnemyControllerMainMenu : MonoBehaviour
             return point;
         }
 
-        if (currentPoint == 2 || currentPoint == 3)
+        while (currentPoint == 2 || currentPoint == 3 ||point == TakenPoint)
         {
             point = Random.Range(0, 10);
             while (point == 0 || point == 10 || point == TakenPoint)

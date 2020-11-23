@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private float _turnSmoothTime = 0.01f;
     private float _knockBackLength = .5f;
     private float _knockbackCounter;
-    private float _groundDistance = 0.4f;
+    private float _groundDistance = 0.1f;
     private bool _isKnocking;
     private bool _isGrounded;
     #endregion
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, GroundMask);
         if (_isGrounded)
         {
+            
             if (Input.GetButtonDown("Jump"))
             {
                 _movementDirection.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);   

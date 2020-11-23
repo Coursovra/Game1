@@ -24,10 +24,7 @@ public class UIManager : MonoBehaviour
 
     public void Awake()
     {
-        instance = this;
-        // BlackScreen.enabled = true;
-        // PauseScreen.SetActive(false);
-        // GameManager.instance.UI.SetActive(true);
+        instance = this;    
     }
 
     public void Start()
@@ -82,7 +79,7 @@ public class UIManager : MonoBehaviour
 
     public void LevelSelect()
     {
-
+        SceneManager.LoadScene("Scenes/SelectLevel");
     }
 
     public void MainMenu()

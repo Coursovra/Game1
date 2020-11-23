@@ -7,6 +7,9 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     #region fields
+
+    public GameObject[] SkeletonsArray;
+    public int SkeletonId;
     public static EnemyController instance;
     public Transform[] PatrolPoints;
     public NavMeshAgent Agent;
@@ -18,11 +21,11 @@ public class EnemyController : MonoBehaviour
     private int _currentPatrolPoint;
     private float _groundDistance = 0.1f;
     private float _gravity = -9.81f;
-    private float _waitAtPoint = 2f;
+    private float _waitAtPoint = 4f;
     private float _waitCounter;
-    private float _chaseRange = 7;
+    private float _chaseRange = 5f;
     private float _attackRange = .7f;
-    private float _attackSpeed = 1f;
+    private float _attackSpeed = .7f;
     private float _attackCounter;
     public enum AIState
     {
@@ -159,12 +162,13 @@ public class EnemyController : MonoBehaviour
     {
         foreach (var collider in SkeletonColliderArray)
         {
-            collider.enabled = false;
+            if(collider.enabled)
+                collider.enabled = false;
         }
         Animation.SetTrigger("Death");
         yield return new WaitForSeconds(3);
-        Destroy(gameObject);
-        Instantiate(Coin, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+        Destroy(SkeletonsArray[SkeletonId]);
+        Instantiate(Coin, new Vector3(SkeletonsArray[SkeletonId].transform.position.x, SkeletonsArray[SkeletonId].transform.position.y + 1, SkeletonsArray[SkeletonId].transform.position.z), Quaternion.identity);
     }
 
 }

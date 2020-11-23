@@ -81,8 +81,8 @@ MonoBehaviour:
   - {fileID: 0}
   Agent: {fileID: 1936539174961588466}
   Animation: {fileID: 1611017385062056964}
-  TakenPoint: 2
-  CurrentPatrolPoint: 2
+  TakenPoint: 7
+  CurrentPatrolPoint: 7
 --- !u!1001 &1611017385052647780
 PrefabInstance:
   m_ObjectHideFlags: 0
