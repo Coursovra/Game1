@@ -10,7 +10,6 @@ public class EnemyController : MonoBehaviour
 
     public GameObject[] SkeletonsArray;
     public int SkeletonId;
-    public static EnemyController instance;
     public Transform[] PatrolPoints;
     public NavMeshAgent Agent;
     public Animator Animation;
@@ -153,22 +152,21 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    private void Awake()
-    {
-        instance = this;
-    }
+
 
     public IEnumerator StartDeath()
     {
+        print(gameObject.name);
         foreach (var collider in SkeletonColliderArray)
         {
             if(collider.enabled)
                 collider.enabled = false;
         }
         Animation.SetTrigger("Death");
+        Destroy(gameObject, 3.1f);
         yield return new WaitForSeconds(3);
-        Destroy(SkeletonsArray[SkeletonId]);
-        Instantiate(Coin, new Vector3(SkeletonsArray[SkeletonId].transform.position.x, SkeletonsArray[SkeletonId].transform.position.y + 1, SkeletonsArray[SkeletonId].transform.position.z), Quaternion.identity);
+
+        Instantiate(Coin, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
     }
 
 }

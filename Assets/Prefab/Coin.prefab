@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _value: 1
-  CoinParticles: {fileID: 3270887482701727584, guid: dac4d373568232640aa460bb5f7e0d4f, type: 3}
+  CoinParticles: {fileID: 3270887482701727584, guid: f44ad8d03b428944dad12689636ca5d7, type: 3}
 --- !u!95 &6090489123354234667
 Animator:
   serializedVersion: 3
