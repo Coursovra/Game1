@@ -10,6 +10,9 @@ public class SelectLevel : MonoBehaviour
     public Camera Level02Camera;
     public Camera LevelBossCamera;
     public Camera MainCamera;
+    public GameObject Island01;
+    public GameObject Island02;
+    public GameObject IslandBoss;
     private string _activeLevelInfo;
     private Ray _ray;
     private RaycastHit _hit;
@@ -30,9 +33,10 @@ public class SelectLevel : MonoBehaviour
         {
             if (Physics.Raycast(MainCamera.transform.position, _ray.direction, out _hit, 100f))
             {
-                print(_hit.transform.name );
                 if(_hit.transform.name == "Level02Island")
                     Level02();
+                if(_hit.transform.name == "Level01Island")
+                    Level01();
 
             }
 
@@ -45,6 +49,9 @@ public class SelectLevel : MonoBehaviour
          SceneManager.LoadScene("Scenes/MainMenu");
         else
         {
+            Island01.SetActive(true);
+            Island02.SetActive(true);
+            IslandBoss.SetActive(true);
             SwitchUI(false, "");
             switch (_activeLevelInfo)
             {
@@ -65,7 +72,6 @@ public class SelectLevel : MonoBehaviour
 
     public void Play_Button()
     {
-        print(_activeLevelInfo);
         SceneManager.LoadScene(_activeLevelInfo);
     }
 
@@ -73,13 +79,17 @@ public class SelectLevel : MonoBehaviour
     {
         SwitchUI(true, "Level 1");
         _activeLevelInfo = "Level01";
-        Level02Camera.gameObject.SetActive(true);
+        Level01Camera.gameObject.SetActive(true);
+        Island02.SetActive(false);
+        IslandBoss.SetActive(false);
     }
     private void Level02()
     {
         SwitchUI(true, "Level 2");
         _activeLevelInfo = "Level02";
         Level02Camera.gameObject.SetActive(true);
+        Island01.SetActive(false);
+        IslandBoss.SetActive(false);
     }
     
     private void LevelBoss()
@@ -87,6 +97,8 @@ public class SelectLevel : MonoBehaviour
         SwitchUI(true, "Boss Level");
         _activeLevelInfo = "LevelBoss";
         Level02Camera.gameObject.SetActive(true);
+        Island01.SetActive(false);
+        Island02.SetActive(false);
     }
 
     private void SwitchUI(bool value, string level)

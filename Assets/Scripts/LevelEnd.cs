@@ -10,7 +10,7 @@ public class LevelEnd : MonoBehaviour
     public bool IsGameEnd;
     public Text RequiredText;
     public Text ScoreText;
-    private int _requiredCoins = 5;
+    public int RequiredCoins = 5;
     private bool _required = false;
 
     private float _timer;
@@ -32,7 +32,7 @@ public class LevelEnd : MonoBehaviour
     {
         if (other.CompareTag("Player") )
         {
-            if(GameManager.instance.CurrentCoins == _requiredCoins)
+            if(GameManager.instance.CurrentCoins == RequiredCoins)
                 EndLevel();
             else
                 Required();
@@ -41,7 +41,6 @@ public class LevelEnd : MonoBehaviour
 
     private void EndLevel()
     {
-        UIManager.instance.CloseOptions();
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -57,7 +56,7 @@ public class LevelEnd : MonoBehaviour
     {
         _required = true;
         RequiredScreen.SetActive(true);
-        RequiredText.text = "You need " + (_requiredCoins - GameManager.instance.CurrentCoins) + " more coins";
+        RequiredText.text = "You need " + (RequiredCoins - GameManager.instance.CurrentCoins) + " more coins";
     }
 
     public void EndLevelButton()
@@ -67,6 +66,7 @@ public class LevelEnd : MonoBehaviour
 
     public void PlayAgainButton()
     {
-        SceneManager.LoadScene("Scenes/Level02");
+        SceneManager.LoadScene("Scenes/" + SceneManager.GetActiveScene().name);
+
     }
 }
