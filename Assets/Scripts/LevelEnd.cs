@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class LevelEnd : MonoBehaviour
 {
+    #region fields
     public static LevelEnd instance;
     public GameObject ScoreScreen;
     public GameObject RequiredScreen;
@@ -11,10 +12,9 @@ public class LevelEnd : MonoBehaviour
     public Text RequiredText;
     public Text ScoreText;
     public int RequiredCoins = 5;
-    private bool _required = false;
-
+    private bool _required;
     private float _timer;
-
+    #endregion
     private void Awake()
     {
         instance = this;
@@ -25,7 +25,6 @@ public class LevelEnd : MonoBehaviour
             _timer += Time.deltaTime;
         if(_required)
             Required();
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,7 +48,6 @@ public class LevelEnd : MonoBehaviour
         RequiredScreen.SetActive(false);
         ScoreScreen.SetActive(true);
         ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + _timer + " seconds";
-        
     }
 
     private void Required()

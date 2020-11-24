@@ -36,13 +36,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!_isKnocking)
-        {
             Movement();
-        }
+
         if (_isKnocking)
-        {
             KnockBack();
-        }
     }
 
     private void Movement()
@@ -62,16 +59,11 @@ public class PlayerController : MonoBehaviour
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, GroundMask);
         if (_isGrounded)
         {
-            
             if (Input.GetButtonDown("Jump"))
-            {
-                _movementDirection.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);   
-            }
+                _movementDirection.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
         }
         else
-        {
             _movementDirection.y += _gravity * Time.deltaTime;
-        }
 
         _characterController.Move(_movementDirection * Time.deltaTime);
 
@@ -86,9 +78,7 @@ public class PlayerController : MonoBehaviour
         moveDir.y += _gravity * Time.deltaTime;
         _characterController.Move(moveDir * Time.deltaTime);
         if (_knockbackCounter <= 0)
-        {
             _isKnocking = false;
-        }
         _knockbackCounter -= Time.deltaTime;
     }
 

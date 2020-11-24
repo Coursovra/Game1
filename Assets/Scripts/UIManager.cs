@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -47,19 +46,16 @@ public class UIManager : MonoBehaviour
         {
             BlackScreen.color = new Color(BlackScreen.color.r, BlackScreen.color.g, BlackScreen.color.b, Mathf.MoveTowards(BlackScreen.color.a, 1f, _fadeSpeed * Time.deltaTime));
             if (BlackScreen.color.a == 1f)
-            {
                 FadeToBlack = false;
-            }
         }
         if (FadeFromBlack)
         {
             BlackScreen.color = new Color(BlackScreen.color.r, BlackScreen.color.g, BlackScreen.color.b, Mathf.MoveTowards(BlackScreen.color.a, 0f, _fadeSpeed * Time.deltaTime));
             if (BlackScreen.color.a == 0f)
-            {
                 FadeFromBlack = false;
-            }
         }
     }
+
     public void Resume()
     {
         GameManager.instance.PauseUnpause();

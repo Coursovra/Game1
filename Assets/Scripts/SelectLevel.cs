@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class SelectLevel : MonoBehaviour
 {
+    #region fields
     public Text LevelName;
     public Button PlayButton;
     public Camera Level01Camera;
@@ -17,29 +18,21 @@ public class SelectLevel : MonoBehaviour
     private Ray _ray;
     private RaycastHit _hit;
     private bool _showingInfo;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
+    #endregion
     void Update()
     {
-
         _ray = MainCamera.ScreenPointToRay(Input.mousePosition);
         if (Input.GetButtonDown("Fire1"))
         {
             if (Physics.Raycast(MainCamera.transform.position, _ray.direction, out _hit, 100f))
             {
-                if(_hit.transform.name == "Level02Island")
+                if (_hit.transform.name == "Level02Island")
                     Level02();
-                if(_hit.transform.name == "Level01Island")
+                if (_hit.transform.name == "Level01Island")
                     Level01();
-
+                //if (_hit.transform.name == "BossIsland") //ne gotovo
+                    //LevelBoss();
             }
-
         }
     }
 
@@ -65,8 +58,6 @@ public class SelectLevel : MonoBehaviour
                     LevelBossCamera.gameObject.SetActive(false);
                     break;
             }
-            
-
         }
     }
 

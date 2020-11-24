@@ -30,7 +30,6 @@ public class EnemyControllerMainMenu : MonoBehaviour
         _waitCounter = _waitAtPoint;
     }
 
-
     void Update()
     {
         SkeletonMovement();
@@ -118,9 +117,6 @@ public class EnemyControllerMainMenu : MonoBehaviour
                 return point;
             }
         }
-
-
-
 
         return point;
     }

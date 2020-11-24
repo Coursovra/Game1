@@ -2,14 +2,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-
-
 public class EnemyController : MonoBehaviour
 {
     #region fields
-
-    public GameObject[] SkeletonsArray;
-    public int SkeletonId;
     public Transform[] PatrolPoints;
     public NavMeshAgent Agent;
     public Animator Animation;
@@ -17,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public bool IsAlive = true;
     [SerializeField]
     private Collider[] SkeletonColliderArray;
+    private int _lastPoint = -1;
     private int _currentPatrolPoint;
     private float _groundDistance = 0.1f;
     private float _gravity = -9.81f;
@@ -37,6 +33,10 @@ public class EnemyController : MonoBehaviour
     #endregion
     void Start()
     {
+        _currentPatrolPoint = Random.Range(0 , PatrolPoints.Length);
+        _lastPoint = _currentPatrolPoint;
+        _chaseRange = Random.Range(5f, 8f);
+        _waitAtPoint = Random.Range(3, 9);
         SkeletonColliderArray = GetComponentsInChildren<Collider>();
         _waitCounter = _waitAtPoint;
         IsAlive = true;
@@ -66,6 +66,7 @@ public class EnemyController : MonoBehaviour
                     {
                         currentState = AIState.isPatrolling;
                         Agent.SetDestination(PatrolPoints[_currentPatrolPoint].position);
+
                     }
 
                     if (distanceToPlayer <= _chaseRange)
@@ -80,11 +81,10 @@ public class EnemyController : MonoBehaviour
 
                     if (Agent.remainingDistance <= .2f)
                     {
-                        _currentPatrolPoint++;
-                        if (_currentPatrolPoint >= PatrolPoints.Length)
-                        {
-                            _currentPatrolPoint = 0;
-                        }
+                        while(_lastPoint == _currentPatrolPoint)
+                            _currentPatrolPoint = Random.Range(0 , PatrolPoints.Length);
+                        _lastPoint = _currentPatrolPoint;
+
 
                         currentState = AIState.isIdle;
                         _waitCounter = _waitAtPoint;
@@ -153,7 +153,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
     public IEnumerator StartDeath()
     {
         print(gameObject.name);
@@ -168,6 +167,5 @@ public class EnemyController : MonoBehaviour
 
         Instantiate(Coin, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
     }
-
 }
  

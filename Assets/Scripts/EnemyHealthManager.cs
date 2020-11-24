@@ -13,7 +13,6 @@ public class EnemyHealthManager : MonoBehaviour
     {
         _skeleton = GetComponent<EnemyController>();
         _currentHealth = _maxHealth;
-        
     }
 
     public void TakeDamage()
@@ -27,9 +26,7 @@ public class EnemyHealthManager : MonoBehaviour
             StartCoroutine(_skeleton.StartDeath());
         }
         else
-        {
             AudioManager.instance.PlaySFX(6);
-        }
     }
 
 }
