@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject PlayerModel;
     public GameObject[] PlayerPieces;
     public Transform Camera;
+    public bool InDarkness;
     private Vector3 _movementDirection;
     private Vector2 _knockbackPower = new Vector2(3f, 8f);
     private CharacterController _characterController;
@@ -35,6 +36,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (InDarkness)
+        {
+            GameManager.instance.Respawn();
+        }
         if (!_isKnocking)
             Movement();
 

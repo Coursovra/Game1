@@ -1,35 +1,83 @@
 fileFormatVersion: 2
 guid: 18ba4dcacda82b341bb9a5cdb547eaa4
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: DamageButton
-    100004: Hand_L
-    100006: SizeCube
-    400000: //RootNode
-    400002: DamageButton
-    400004: Hand_L
-    400006: SizeCube
-    2100000: Material
-    2100002: Main
-    2100004: Secondary
-    2100006: RedGlow
-    2100008: Metal
-    2300000: DamageButton
-    2300002: Hand_L
-    2300004: SizeCube
-    2300006: //RootNode
-    3300000: DamageButton
-    3300002: Hand_L
-    3300004: SizeCube
-    3300006: //RootNode
-    4300000: SizeCube
-    4300002: Hand_L
-    4300004: DamageButton
+  serializedVersion: 20101
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: DamageButton
+  - first:
+      1: 100004
+    second: Hand_L
+  - first:
+      1: 100006
+    second: SizeCube
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: DamageButton
+  - first:
+      4: 400004
+    second: Hand_L
+  - first:
+      4: 400006
+    second: SizeCube
+  - first:
+      21: 2100000
+    second: Material
+  - first:
+      21: 2100002
+    second: Main
+  - first:
+      21: 2100004
+    second: Secondary
+  - first:
+      21: 2100006
+    second: RedGlow
+  - first:
+      21: 2100008
+    second: Metal
+  - first:
+      23: 2300000
+    second: DamageButton
+  - first:
+      23: 2300002
+    second: Hand_L
+  - first:
+      23: 2300004
+    second: SizeCube
+  - first:
+      23: 2300006
+    second: //RootNode
+  - first:
+      33: 3300000
+    second: DamageButton
+  - first:
+      33: 3300002
+    second: Hand_L
+  - first:
+      33: 3300004
+    second: SizeCube
+  - first:
+      33: 3300006
+    second: //RootNode
+  - first:
+      43: 4300000
+    second: SizeCube
+  - first:
+      43: 4300002
+    second: Hand_L
+  - first:
+      43: 4300004
+    second: DamageButton
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -47,7 +95,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -62,25 +110,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -89,10 +144,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -102,13 +157,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.4
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

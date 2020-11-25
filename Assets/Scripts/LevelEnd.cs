@@ -32,13 +32,13 @@ public class LevelEnd : MonoBehaviour
         if (other.CompareTag("Player") )
         {
             if(GameManager.instance.CurrentCoins == RequiredCoins)
-                EndLevel();
+                EndLevel(_timer);
             else
                 Required();
         }
     }
 
-    private void EndLevel()
+    public void EndLevel(float timer)
     {
         Time.timeScale = 0f;
         Cursor.visible = true;
@@ -47,7 +47,12 @@ public class LevelEnd : MonoBehaviour
         IsGameEnd = true;
         RequiredScreen.SetActive(false);
         ScoreScreen.SetActive(true);
-        ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + _timer + " seconds";
+        if(GameManager.instance.CurrentCoins > 0)
+            ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + timer + " seconds";
+        else
+        {
+            ScoreText.text = "Time: " + _timer + " seconds";
+        }
     }
 
     private void Required()

@@ -6,31 +6,55 @@ public class DarknessController : MonoBehaviour
 {
     #region fields
     [SerializeField]
-    private LayerMask _layerMask;
+    public LayerMask LayerMask;
     private Light _light;
-    public  bool PlayerInLight;
+    private List<Collider> _hitColliders;
+    private bool _inLight;
+    public int id;
+    static bool[] InLight = new bool[9];
+    private int _counter = 0;
     #endregion
     void Start()
     {
         _light = GetComponent<Light>();
     }
 
+    private void Awake()
+    {
+        InLight[id] = false;
+        InLight[0] = true;
+    }
+
     void Update()
     {
-        List<Collider> hitColliders = new List<Collider>(Physics.OverlapSphere(transform.position, _light.range, _layerMask));Physics.OverlapSphere(transform.position, _light.range, _layerMask);
-        //в коллайдере получить имя и понять на свету игрок или нет...
-        //if (hitColliders.Contains("Player") || hitColliders[0].name == "GroundCheck")
-            print("in light");
-        //else
+        PlayerState();
+    }
+
+    private void PlayerState()
+    {
+        _hitColliders = new List<Collider>(Physics.OverlapSphere(transform.position, _light.range, LayerMask));
+        if (_hitColliders.Count > 0)
         {
-            print("net");
+            _inLight = true;
         }
-            //PlayerInLight = false;
-        //PlayerInLight = Physics.CheckSphere(_lightTransofrm.position, _light.range, _layerMask);
-        if (!PlayerInLight)
+        else
         {
-            //print(1);
-            //GameManager.instance.Respawn();
+            _inLight = false;
+        }
+        InLight[id] = _inLight;
+        _counter = 0;
+        foreach (var VARIABLE in InLight)
+        {
+            if (VARIABLE)
+            {
+                PlayerController.instance.InDarkness = false;
+                break;
+            }
+            if(_counter == InLight.Length-1)
+            {
+                PlayerController.instance.InDarkness = true;
+            }
+            _counter++;
         }
     }
 
@@ -39,3 +63,6 @@ public class DarknessController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _light.range);
     }
 }
+//print("0" + ": " + InLight[0] + ",  " + "1" + ": " + InLight[1] + ",  " + "2" + ": " + InLight[2] + ",  " +
+//"3" + ": " + InLight[3] + ",  " + "4" + ": " + InLight[4] + ",  " + "5" + ": " + InLight[5] + ",  " +
+//"6" + ": " + InLight[6] + ",  " + "7" + ": " + InLight[7] + ",  " + "8" + ": " + InLight[8]);
