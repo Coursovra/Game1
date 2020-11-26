@@ -373,10 +373,12 @@
           <e p="HurtEnemy.cs" t="Include" />
           <e p="HurtPlayer.cs" t="Include" />
           <e p="KillPlayer.cs" t="Include" />
+          <e p="LeftSideCheck.cs" t="Include" />
           <e p="LevelEnd.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="PatrolPointsScript.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="RightSideCheck.cs" t="Include" />
           <e p="SelectLevel.cs" t="Include" />
           <e p="UIManager.cs" t="Include" />
         </e>

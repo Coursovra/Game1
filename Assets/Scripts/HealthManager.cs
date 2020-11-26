@@ -6,8 +6,8 @@ public class HealthManager : MonoBehaviour
     public static HealthManager instance;
     public Sprite[] HealthBarImages = new Sprite[5];
     public int CurrentHealth, MaxHealth;
+    public float InvincCounter;
     private float _invincibleLength = 2f;
-    private float _invincCounter;
     #endregion
     private void Awake()
 
@@ -26,13 +26,13 @@ public class HealthManager : MonoBehaviour
 
     public void DamageEffect()
     {
-        if (_invincCounter > 0)
+        if (InvincCounter > 0)
         {
-            _invincCounter -= Time.deltaTime;
+            InvincCounter -= Time.deltaTime;
 
             for (int i = 0; i < PlayerController.instance.PlayerPieces.Length; i++)
             {
-                if (Mathf.Floor(_invincCounter * 5f) % 2 == 0)
+                if (Mathf.Floor(InvincCounter * 5f) % 2 == 0)
                 {
                     PlayerController.instance.PlayerPieces[i].SetActive(true);
                 }
@@ -42,7 +42,7 @@ public class HealthManager : MonoBehaviour
                 }
 
 
-                if (_invincCounter <= 0)
+                if (InvincCounter <= 0)
                 {
                     PlayerController.instance.PlayerPieces[i].SetActive(true);
                 }
@@ -51,7 +51,7 @@ public class HealthManager : MonoBehaviour
     }
     public void Hurt()
     {
-        if (_invincCounter <= 0)
+        if (InvincCounter <= 0)
         {
             CurrentHealth--;
             AudioManager.instance.PlaySFX(7);
@@ -63,7 +63,7 @@ public class HealthManager : MonoBehaviour
             else
             {
                 PlayerController.instance.StartKnockBack();
-                _invincCounter = _invincibleLength;
+                InvincCounter = _invincibleLength;
             }
             UpdateUI();
         }

@@ -34,6 +34,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyHealthManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RightSideCheck.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BossController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyControllerMainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/04258D1C-DC10-4424-8C2A-17A6A31A3CF7/38/269946ca/Random.cs" root0="SKIP_HIGHLIGHTING" />
@@ -48,7 +49,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PatrolPointsScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HealthPickup.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Checkpoint.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HealthManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SkeletonClass.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" />
@@ -66,11 +66,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossArenaController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BossWeakPlaceCntroller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DarknessController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelEnd.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RightSideCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LeftSideCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HealthManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BossWeakPlaceCntroller.cs" />
       </list>
     </option>
   </component>
@@ -133,6 +136,7 @@
       <workItem from="1606235723123" duration="8726000" />
       <workItem from="1606288600915" duration="18320000" />
       <workItem from="1606376905250" duration="13134000" />
+      <workItem from="1606403177053" duration="6017000" />
     </task>
     <servers />
   </component>

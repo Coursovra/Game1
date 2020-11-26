@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class BossController : MonoBehaviour
 {
@@ -24,11 +25,13 @@ public class BossController : MonoBehaviour
     public float WaitTime = 5;
     private float _timer;
     [SerializeField]
-    private float _attackSpeed = 3;
+    private float _attackSpeed = 0;
     private int _attackRange = 3;
     [SerializeField]
     private _bossState _currentState = _bossState.isIdle;
     private bool _fightStarted;
+    public bool LeftSide;
+    public bool RightSide;
 
     private BoxCollider collider;
     private enum _bossState
@@ -54,7 +57,6 @@ public class BossController : MonoBehaviour
         IsPlayerInArena = Physics.CheckBox(transform.TransformPoint(collider.center), collider.size/2,
             Quaternion.identity,
             LayerMask.GetMask("PlayerLayer"));
-        print(IsPlayerInArena);
 
         if (IsPlayerInArena && !_fightStarted)
         {
@@ -85,36 +87,33 @@ public class BossController : MonoBehaviour
                         _currentState = _bossState.isIdle;
                 }
 
-                BossAnimation.SetBool("IsIdle", false);
-                _attackSpeed -= Time.deltaTime;
-                if (_attackSpeed <= 0)
-                {
-
-                    StartCoroutine(PlayAnimation());
-
-                    //BossAnimation.SetTrigger("LAttack");
-                    BossAnimation.SetBool("IsIdle", true);
-                    _attackSpeed = 3;
-                }
+                if (LeftSide)
+                    StartCoroutine(Attack("Left"));
+                else if(RightSide)
+                    StartCoroutine(Attack("Right"));
                 else
                 {
-                    //BossAnimation.ResetTrigger("LAttack");
+                    StartCoroutine(Attack("Left"));
                 }
 
-                //BossAnimation.SetBool("LeftHandAttack", false);
                 break;
             }
 
         }
     }
 
-    IEnumerator PlayAnimation()
+    IEnumerator Attack(string hand)
     {
-        BossAnimation.SetBool("IsIdle", false);
-        BossAnimation.SetBool("LeftHandAttack", false);
-        //BossAnimation.SetTrigger("LAttack");
-        yield return new WaitForSeconds(3f);
+        if (_attackSpeed <= 0)
+        {
+            BossAnimation.SetBool(hand + "HandAttack", true);
+            yield return new WaitForSeconds(1.5f);
+            _attackSpeed = 5;
+            BossAnimation.SetBool(hand + "HandAttack", false);
+        }
+        _attackSpeed -= Time.deltaTime;
     }
+
 
     private void StatFight()
     {
@@ -124,11 +123,6 @@ public class BossController : MonoBehaviour
         SwitchUI(true);
     }
 
-    private void Attack()
-    {
-        //if collider trigger ruki
-        //player.hurt
-    }
     private void Idle()
     {
         //play animation idle
@@ -169,6 +163,6 @@ public class BossController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.TransformPoint(collider.center), collider.size);
+        //Gizmos.DrawWireCube(transform.TransformPoint(collider.center), collider.size);
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossWeakPlaceCntroller : MonoBehaviour
+public class RightSideCheck : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,14 +14,15 @@ public class BossWeakPlaceCntroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && HealthManager.instance.InvincCounter <= 0)
+        if (other.CompareTag("Player"))
         {
-            BossController.instance.HurtBoss();
+            BossController.instance.RightSide = true;
+            BossController.instance.LeftSide = false;
         }
     }
 }
