@@ -39,6 +39,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/04258D1C-DC10-4424-8C2A-17A6A31A3CF7/38/269946ca/Random.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DarknessController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PatrolPointsScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/04258D1C-DC10-4424-8C2A-17A6A31A3CF7/df/2284d4de/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BossWeakPlaceCntroller.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -62,8 +64,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/KillPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SelectLevel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BossArenaController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BossWeakPlaceCntroller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DarknessController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelEnd.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossController.cs" />
@@ -128,6 +132,7 @@
       <workItem from="1606199407978" duration="10911000" />
       <workItem from="1606235723123" duration="8726000" />
       <workItem from="1606288600915" duration="18320000" />
+      <workItem from="1606376905250" duration="13134000" />
     </task>
     <servers />
   </component>
@@ -187,9 +192,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="936" y="330" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606137500899" />
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1606307338220">
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1606386551428">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606307338220" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606386551428" />
   </component>
 </project>

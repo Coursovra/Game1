@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
     #region fields
+
+    public static BossController instance;
     public int MaxHealth = 9;
     public int CurrentHealth;
     public GameObject BossUI;
@@ -14,41 +18,107 @@ public class BossController : MonoBehaviour
     public GameObject LeftHand;
     public GameObject RightHand;
     public GameObject Head;
-    public Animator LeftHandAnimator;
-    public Animator RightHandAnimator;
-    public Animator HeadAnimator;
+    public Animator BossAnimation;
+    public bool IsPlayerInArena;
+    [SerializeField]
+    public float WaitTime = 5;
     private float _timer;
-    private int _attackSpeed = 5;
+    [SerializeField]
+    private float _attackSpeed = 3;
     private int _attackRange = 3;
+    [SerializeField]
+    private _bossState _currentState = _bossState.isIdle;
+    private bool _fightStarted;
+
+    private BoxCollider collider;
+    private enum _bossState
+    {
+        isIdle,
+        isAttacking
+    }
     #endregion
 
     void Start()
     {
+        collider = GetComponent<BoxCollider>();
         AudioManager.instance.PlayMusic(1);
     }
     private void Awake()
     {
+        instance = this;
         _timer += Time.deltaTime;
-        //HeadController.SetBool(0, true);
-        HeadAnimator.SetBool(0, false);
-        //RightHandAnimator.SetBool("RightHandAttack", true);
-        LeftHandAnimator.SetBool(1, true);
-        //LeftHandController.SetBool(1, true);
+        BossAnimation.SetBool("IsIdle", false);
     }
     void Update()
     {
+        IsPlayerInArena = Physics.CheckBox(transform.TransformPoint(collider.center), collider.size/2,
+            Quaternion.identity,
+            LayerMask.GetMask("PlayerLayer"));
+        print(IsPlayerInArena);
 
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if (IsPlayerInArena && !_fightStarted)
         {
             StatFight();
         }
+        BossState();
+    }
+
+    private void BossState()
+    {
+        switch (_currentState)
+        {
+            case _bossState.isIdle:
+            {
+                if (IsPlayerInArena)
+                    _currentState = _bossState.isAttacking;
+                WaitTime = 5;
+                BossAnimation.SetBool("IsIdle", true);
+
+                break;
+            }
+            case _bossState.isAttacking:
+            {
+                if (!IsPlayerInArena)
+                {
+                    WaitTime -= Time.deltaTime;
+                    if(WaitTime <= 0)
+                        _currentState = _bossState.isIdle;
+                }
+
+                BossAnimation.SetBool("IsIdle", false);
+                _attackSpeed -= Time.deltaTime;
+                if (_attackSpeed <= 0)
+                {
+
+                    StartCoroutine(PlayAnimation());
+
+                    //BossAnimation.SetTrigger("LAttack");
+                    BossAnimation.SetBool("IsIdle", true);
+                    _attackSpeed = 3;
+                }
+                else
+                {
+                    //BossAnimation.ResetTrigger("LAttack");
+                }
+
+                //BossAnimation.SetBool("LeftHandAttack", false);
+                break;
+            }
+
+        }
+    }
+
+    IEnumerator PlayAnimation()
+    {
+        BossAnimation.SetBool("IsIdle", false);
+        BossAnimation.SetBool("LeftHandAttack", false);
+        //BossAnimation.SetTrigger("LAttack");
+        yield return new WaitForSeconds(3f);
     }
 
     private void StatFight()
     {
+        _fightStarted = true;
         CurrentHealth = MaxHealth;
         AudioManager.instance.PlayMusic(2);
         SwitchUI(true);
@@ -64,17 +134,18 @@ public class BossController : MonoBehaviour
         //play animation idle
     }
 
-    private void HurtBoss()
+    public void HurtBoss()
     {
-        // if collider trigger (na rukah tochki)
         AudioManager.instance.PlaySFX(1);
         CurrentHealth--;
-        HealthPointImages[CurrentHealth+1].gameObject.SetActive(false);
+        print(CurrentHealth);
+        HealthPointImages[CurrentHealth].gameObject.SetActive(false);
         if (CurrentHealth <= 0)
         {
             BossDeath();
             EndLevel();
         }
+
     }
 
     private void EndLevel()
@@ -96,4 +167,8 @@ public class BossController : MonoBehaviour
         //playSFX
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.TransformPoint(collider.center), collider.size);
+    }
 }

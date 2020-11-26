@@ -11,7 +11,7 @@ public class DarknessController : MonoBehaviour
     private List<Collider> _hitColliders;
     private bool _inLight;
     public int id;
-    static bool[] InLight = new bool[9];
+    static bool[] InLight = new bool[7];
     private int _counter = 0;
     #endregion
     void Start()
@@ -60,7 +60,7 @@ public class DarknessController : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, _light.range);
+        //Gizmos.DrawWireSphere(transform.position, _light.range);
     }
 }
 //print("0" + ": " + InLight[0] + ",  " + "1" + ": " + InLight[1] + ",  " + "2" + ": " + InLight[2] + ",  " +

@@ -29,7 +29,7 @@ public class LevelEnd : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") )
+        if (other.CompareTag("Player") && SceneManager.GetActiveScene().name != "LevelBoss")
         {
             if(GameManager.instance.CurrentCoins == RequiredCoins)
                 EndLevel(_timer);
@@ -43,15 +43,17 @@ public class LevelEnd : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        GameManager.instance.UI.SetActive(false);
+        if(SceneManager.GetActiveScene().name != "LevelBoss")
+            GameManager.instance.UI.SetActive(false);
         IsGameEnd = true;
-        RequiredScreen.SetActive(false);
+        if(SceneManager.GetActiveScene().name != "LevelBoss")
+            RequiredScreen.SetActive(false);
         ScoreScreen.SetActive(true);
-        if(GameManager.instance.CurrentCoins > 0)
+        if(SceneManager.GetActiveScene().name != "LevelBoss")
             ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + timer + " seconds";
         else
         {
-            ScoreText.text = "Time: " + _timer + " seconds";
+            ScoreText.text = "Congratulations! \nTime: " + (int)(_timer % 60) + " seconds";
         }
     }
 

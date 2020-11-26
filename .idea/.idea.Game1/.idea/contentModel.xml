@@ -359,6 +359,7 @@
         <e p="Scripts" t="Include">
           <e p="AudioManager.cs" t="Include" />
           <e p="BossController.cs" t="Include" />
+          <e p="BossWeakPlaceCntroller.cs" t="Include" />
           <e p="Checkpoint.cs" t="Include" />
           <e p="CoinPuckup.cs" t="Include" />
           <e p="DarknessController.cs" t="Include" />
