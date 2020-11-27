@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f99df3e1da44024aff72012cb476597, type: 3}
+  m_Name: AudioClips
+  m_EditorClassIdentifier: 
+  VictoryMusic: {fileID: 8300000, guid: 2c8d61c481c3b93438a48030e6edf745, type: 3}
+  ScaryMusic: {fileID: 8300000, guid: bdfd160589bac7445a91cd11aeadfa1b, type: 3}
+  ActionMusic: {fileID: 8300000, guid: dd966b6dbf55f4f4b90ad094a4c7b2ea, type: 3}
+  RightHandAttack: {fileID: 8300000, guid: 4f9e22bcdd7a5564286306f3a1f2d945, type: 3}
+  LeftHandAttack: {fileID: 8300000, guid: 3bd4915421a90f647961e5a2154061a8, type: 3}

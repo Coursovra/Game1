@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private Transform _groundCheck;
     private Animator _animator;
     private float _moveSpeed = 6f;
-    private float _jumpHeight = 1f;
+    private float _jumpHeight = 1.5f;
     private float _gravityScale = 4f;
     private float _gravity = -9.81f;
     private float _rotateSpeed;

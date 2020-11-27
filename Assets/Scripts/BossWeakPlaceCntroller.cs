@@ -20,7 +20,7 @@ public class BossWeakPlaceCntroller : MonoBehaviour
     {
         if (other.CompareTag("Player") && HealthManager.instance.InvincCounter <= 0)
         {
-            BossController.instance.HurtBoss();
+            StartCoroutine(BossController.instance.HurtBoss());
         }
     }
 }
