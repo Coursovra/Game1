@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BossController : MonoBehaviour
 {
@@ -11,25 +12,24 @@ public class BossController : MonoBehaviour
     public GameObject PlayerUI;
     public GameObject[] HealthPointImages = new GameObject[9];
     public GameObject Head;
+    public Animator BossAnimation;
     public GameObject LeftHand;
     public GameObject RightHand;
-    public Animator BossAnimation;
-    // public AudioSource ScaryMusic;
-    // public AudioSource ActionMusic;
-    // public AudioSource VictoryMusic;
-    // public AudioSource LeftHandSfx;
-    // public AudioSource RightHandSfx;
+    [SerializeField]
+    private GameObject[] _bossPieces;
     public bool IsPlayerInArena;
     public bool LeftSide;
     public bool RightSide;
     private bool _fightStarted;
+    private bool _isDead;
+    private bool _isScaryMusicPlaying;
+    private bool _isActionMusicPlaying;
     private BoxCollider _arenaBoxCollider;
     private _bossState _currentState = _bossState.isIdle;
     private int _maxHealth = 9;
-    [SerializeField]
     private int _currentHealth;
     private float _invulnerabilityTime;
-    private float _attackSpeed;
+    private float _attackCoolDown;
     private float _attackRange = 6.2f;
     private float _timeToIdle = 5;
     private float _timer;
@@ -39,11 +39,7 @@ public class BossController : MonoBehaviour
     private AudioSource _audioSourceMusic;
     [SerializeField]
     private AudioSource _audioSourceSFX;
-
-    private bool _isActionMusicPlaying;
-    private bool _isVictoryMusicPlaying;
     private LayerMask _playerLayerMask;
-    private bool _isDead;
     private enum _bossState
     {
         isIdle,
@@ -52,24 +48,20 @@ public class BossController : MonoBehaviour
     }
     #endregion
 
-    void Start()
-    {
-        _arenaBoxCollider = GetComponent<BoxCollider>();
-    }
     private void Awake()
     {
+        _arenaBoxCollider = GetComponent<BoxCollider>();
         instance = this;
         BossAnimation.SetBool("IsIdle", false);
-        _audioSourceMusic.clip = _audioClips.ScaryMusic;
-        _audioSourceMusic.Play();
         _playerLayerMask = LayerMask.GetMask("PlayerLayer");
+        _audioSourceMusic.volume = .3f;
+        _audioSourceSFX.volume = .3f;
     }
     void Update()
     {
         _timer += Time.deltaTime;
         IsPlayerInArena = Physics.CheckBox(transform.TransformPoint(_arenaBoxCollider.center), _arenaBoxCollider.size/2,
             Quaternion.identity, _playerLayerMask);
-
         if (IsPlayerInArena && !_fightStarted)
         {
             StartCoroutine(StatFight());
@@ -100,63 +92,70 @@ public class BossController : MonoBehaviour
 
     private IEnumerator Attack(string hand)
     {
-        if (_attackSpeed <= 0)
+        if (_attackCoolDown <= 0)
         {
             BossAnimation.SetBool(hand + "HandAttack", true);
             yield return new WaitForSeconds(1.5f);
-            _attackSpeed = 3.5f;
+            _attackCoolDown = 3.5f;
+            if (_currentHealth < 5)
+                _attackCoolDown = 2.5f;
             BossAnimation.SetBool(hand + "HandAttack", false);
         }
     }
 
     private IEnumerator StatFight()
     {
-        if (!_isActionMusicPlaying)
-        {
-            _audioSourceMusic.clip = _audioClips.ActionMusic;
-            _audioSourceMusic.Play();
-            _isActionMusicPlaying = true;
-        }
-        Head.SetActive(true);
-        RightHand.SetActive(true);
-        LeftHand.SetActive(true);
-        BossAnimation.SetBool("Intro", true);
-        yield return new WaitForSeconds(1.7f);
-        BossAnimation.SetBool("Intro", false);
         _fightStarted = true;
+        foreach (var piece in _bossPieces)
+        {
+            piece.SetActive(true);
+        }
+        BossAnimation.SetBool("Intro", true);
+
+
+        yield return new WaitForSeconds(1.65f);
+        BossAnimation.SetBool("Intro", false);
+
         _currentHealth = _maxHealth;
         SwitchUI(true);
     }
 
     private void Idle()
     {
+        if (!_isScaryMusicPlaying)
+        {
+            _audioSourceMusic.clip = _audioClips.ScaryMusic;
+            _audioSourceMusic.Play();
+            _isScaryMusicPlaying = true;
+            _isActionMusicPlaying = false;
+        }
+
         if (IsPlayerInArena)
             _currentState = _bossState.isAttacking;
         _timeToIdle = 5;
         BossAnimation.SetBool("IsIdle", true);
-        if (!_audioSourceMusic.isPlaying)
-            _audioSourceMusic.Play();
-        
     }
     
     private IEnumerator Death()
     {
-        if (!_isVictoryMusicPlaying)
-        {
-            _audioSourceMusic.clip = _audioClips.ActionMusic;
-            _audioSourceMusic.Play();
-            _isVictoryMusicPlaying = true;
-        }
+        _isDead = true;
         _audioSourceMusic.clip = _audioClips.VictoryMusic;
         _audioSourceMusic.Play();
         BossAnimation.SetBool("Death", true);
         yield return new WaitForSeconds(7f);
-        _isDead = true;
         EndLevel();
     }
 
     private void Attacking()
     {
+        _isScaryMusicPlaying = false;
+        if (!_isActionMusicPlaying)
+        {
+            _isActionMusicPlaying = true;
+            _audioSourceMusic.clip = _audioClips.ActionMusic;
+            _audioSourceMusic.Play();
+        }
+
         if (!IsPlayerInArena)
         {
             _timeToIdle -= Time.deltaTime;
@@ -169,12 +168,14 @@ public class BossController : MonoBehaviour
                 StartCoroutine(Attack("Left"));
             else if (RightSide)
                 StartCoroutine(Attack("Right"));
-            else
-                StartCoroutine(Attack("Left"));
+            //else
+                //StartCoroutine(Attack("Left"));
         }
+
+        Head.transform.LookAt(new Vector3(PlayerController.instance.transform.position.x, 85, PlayerController.instance.transform.position.z));
         _invulnerabilityTime -= Time.deltaTime;
         if(_invulnerabilityTime <= 0)
-            _attackSpeed -= Time.deltaTime;
+            _attackCoolDown -= Time.deltaTime;
     }
 
     public IEnumerator HurtBoss()
@@ -195,7 +196,6 @@ public class BossController : MonoBehaviour
             BossAnimation.SetBool("Hurt", false);
         }
     }
-
 
     private void EndLevel()
     {
@@ -220,4 +220,14 @@ public class BossController : MonoBehaviour
         _audioSourceSFX.clip = _audioClips.RightHandAttack;
         _audioSourceSFX.Play();
     }
+
+    public void RightHandShakeCamera()
+    {
+        CinemachineShake.Instance.ShakeCamera(8f, .5f, 1f);
+    }
+    public void LeftHandShakeCamera()
+    {
+        CinemachineShake.Instance.ShakeCamera(2f, .9f, .4f);
+    }
+
 }

@@ -43,10 +43,12 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PatrolPointsScript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BossController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyHealthManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BossController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyControllerMainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.3/Runtime/Core/CinemachineVirtualCameraBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PatrolPointsScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CinemachineShake.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -61,24 +63,25 @@
         <option value="$PROJECT_DIR$/Assets/Eldorado/Standard Assets/Cameras/Scripts/TargetFieldOfView.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CoinPuckup.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DestroyOtherTime.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EnemyControllerMainMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyHealthManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HurtEnemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HurtPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/KillPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SelectLevel.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossArenaController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DarknessController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/LevelEnd.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RightSideCheck.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/LeftSideCheck.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HealthManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BossWeakPlaceCntroller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioClips.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SelectLevel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BossWeakPlaceCntroller.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RightSideCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LeftSideCheck.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemyHealthManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CinemachineShake.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelEnd.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossController.cs" />
       </list>
     </option>
@@ -144,6 +147,7 @@
       <workItem from="1606376905250" duration="13134000" />
       <workItem from="1606403177053" duration="6017000" />
       <workItem from="1606467459636" duration="21203000" />
+      <workItem from="1606551315645" duration="24262000" />
     </task>
     <servers />
   </component>

@@ -17,7 +17,6 @@ public class EnemyHealthManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        print(gameObject.name);
         _currentHealth--;
         if(_currentHealth <= 0)
         {

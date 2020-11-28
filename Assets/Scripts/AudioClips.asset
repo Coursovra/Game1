@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f99df3e1da44024aff72012cb476597, type: 3}
   m_Name: AudioClips
   m_EditorClassIdentifier: 
-  VictoryMusic: {fileID: 8300000, guid: 2c8d61c481c3b93438a48030e6edf745, type: 3}
+  VictoryMusic: {fileID: 8300000, guid: 514c739ee4cce7f4c96388651e39e126, type: 3}
   ScaryMusic: {fileID: 8300000, guid: bdfd160589bac7445a91cd11aeadfa1b, type: 3}
   ActionMusic: {fileID: 8300000, guid: dd966b6dbf55f4f4b90ad094a4c7b2ea, type: 3}
   RightHandAttack: {fileID: 8300000, guid: 4f9e22bcdd7a5564286306f3a1f2d945, type: 3}

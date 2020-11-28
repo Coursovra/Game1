@@ -14,6 +14,7 @@ public class SelectLevel : MonoBehaviour
     public GameObject Island01;
     public GameObject Island02;
     public GameObject IslandBoss;
+    public Light DirectionalLight;
     private string _activeLevelInfo;
     private Ray _ray;
     private RaycastHit _hit;
@@ -30,8 +31,8 @@ public class SelectLevel : MonoBehaviour
                     Level02();
                 if (_hit.transform.name == "Level01Island")
                     Level01();
-                //if (_hit.transform.name == "BossIsland") //ne gotovo
-                    //LevelBoss();
+                if (_hit.transform.name == "BossIsland")
+                    LevelBoss();
             }
         }
     }
@@ -85,15 +86,19 @@ public class SelectLevel : MonoBehaviour
     
     private void LevelBoss()
     {
-        SwitchUI(true, "Boss Level");
+        SwitchUI(true, "Boss");
         _activeLevelInfo = "LevelBoss";
-        Level02Camera.gameObject.SetActive(true);
+        LevelBossCamera.gameObject.SetActive(true);
         Island01.SetActive(false);
         Island02.SetActive(false);
     }
 
     private void SwitchUI(bool value, string level)
     {
+        if(level == "Boss")
+            DirectionalLight.gameObject.SetActive(false);
+        else
+            DirectionalLight.gameObject.SetActive(true);
         MainCamera.gameObject.SetActive(!value);
         _showingInfo = value;
         LevelName.gameObject.SetActive(value);

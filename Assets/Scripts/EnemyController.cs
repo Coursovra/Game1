@@ -155,7 +155,6 @@ public class EnemyController : MonoBehaviour
 
     public IEnumerator StartDeath()
     {
-        print(gameObject.name);
         foreach (var collider in SkeletonColliderArray)
         {
             if(collider.enabled)

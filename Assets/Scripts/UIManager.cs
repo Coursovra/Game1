@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
 
     public void Awake()
     {
-        instance = this;    
+        instance = this;
     }
 
     public void Start()
@@ -32,7 +32,6 @@ public class UIManager : MonoBehaviour
         PauseScreen.SetActive(false);
         GameManager.instance.UI.SetActive(true);
         FadeFromBlack = true;
-
     }
 
     void Update()

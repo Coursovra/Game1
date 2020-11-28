@@ -13,6 +13,7 @@ public class LevelEnd : MonoBehaviour
     public Text ScoreText;
     public int RequiredCoins = 5;
     private bool _required;
+    [SerializeField]
     private float _timer;
     #endregion
     private void Awake()
@@ -22,7 +23,7 @@ public class LevelEnd : MonoBehaviour
     void Update()
     {
         if(!IsGameEnd)
-            _timer += Time.deltaTime;
+            _timer += 1 * Time.deltaTime;
         if(_required)
             Required();
     }
@@ -31,7 +32,7 @@ public class LevelEnd : MonoBehaviour
     {
         if (other.CompareTag("Player") && SceneManager.GetActiveScene().name != "LevelBoss")
         {
-            if(GameManager.instance.CurrentCoins == RequiredCoins)
+            if(GameManager.instance.CurrentCoins >= RequiredCoins)
                 EndLevel(_timer);
             else
                 Required();
@@ -50,10 +51,10 @@ public class LevelEnd : MonoBehaviour
             RequiredScreen.SetActive(false);
         ScoreScreen.SetActive(true);
         if(SceneManager.GetActiveScene().name != "LevelBoss")
-            ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + timer + " seconds";
+            ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + _timer + " seconds";
         else
         {
-            ScoreText.text = "Congratulations! \nTime: " + (int)(_timer % 60) + " seconds";
+            ScoreText.text = "Congratulations! \nTime: " + _timer + " seconds";
         }
     }
 
