@@ -16,4 +16,4 @@ MonoBehaviour:
   ScaryMusic: {fileID: 8300000, guid: bdfd160589bac7445a91cd11aeadfa1b, type: 3}
   ActionMusic: {fileID: 8300000, guid: dd966b6dbf55f4f4b90ad094a4c7b2ea, type: 3}
   RightHandAttack: {fileID: 8300000, guid: 4f9e22bcdd7a5564286306f3a1f2d945, type: 3}
-  LeftHandAttack: {fileID: 8300000, guid: 3bd4915421a90f647961e5a2154061a8, type: 3}
+  LeftHandAttack: {fileID: 8300000, guid: 76b43cbc303801b4eb3ec2917a0ab454, type: 3}
