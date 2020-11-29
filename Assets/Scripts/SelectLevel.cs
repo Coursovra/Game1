@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,6 +21,12 @@ public class SelectLevel : MonoBehaviour
     private RaycastHit _hit;
     private bool _showingInfo;
     #endregion
+
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     void Update()
     {
         _ray = MainCamera.ScreenPointToRay(Input.mousePosition);
@@ -27,10 +34,10 @@ public class SelectLevel : MonoBehaviour
         {
             if (Physics.Raycast(MainCamera.transform.position, _ray.direction, out _hit, 100f))
             {
-                if (_hit.transform.name == "Level02Island")
-                    Level02();
                 if (_hit.transform.name == "Level01Island")
                     Level01();
+                if (_hit.transform.name == "Level02Island")
+                    Level02();
                 if (_hit.transform.name == "BossIsland")
                     LevelBoss();
             }
@@ -54,7 +61,7 @@ public class SelectLevel : MonoBehaviour
                     break;
                 case "Level02":
                     Level02Camera.gameObject.SetActive(false);
-                break;
+                    break;
                 case "LevelBoss":
                     LevelBossCamera.gameObject.SetActive(false);
                     break;

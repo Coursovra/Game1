@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PlayMusic(LevelMusicToPlay);
+        PlayMusic();
     }
 
     public void Awake()
@@ -19,9 +19,9 @@ public class AudioManager : MonoBehaviour
         instance = this;
     }
 
-    public void PlayMusic(int musicToPlay)
+    public void PlayMusic()
     {
-        Music[musicToPlay].Play();
+        Music[LevelMusicToPlay].Play();
     }
 
     public void PlaySFX(int sfxToPlay)

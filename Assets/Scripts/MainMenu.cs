@@ -14,6 +14,12 @@ public class MainMenu : MonoBehaviour
     {
         AudioMixer.SetFloat("MusicValue", 1);
     }
+    
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
+
 
     public void NewGame()
     {

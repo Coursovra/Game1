@@ -12,9 +12,10 @@ public class BossController : MonoBehaviour
     public GameObject PlayerUI;
     public GameObject[] HealthPointImages = new GameObject[9];
     public GameObject Head;
-    public Animator BossAnimation;
     public GameObject LeftHand;
     public GameObject RightHand;
+    public GameObject BlackScreen;
+    public Animator BossAnimation;
     [SerializeField]
     private GameObject[] _bossPieces;
     public bool IsPlayerInArena;
@@ -27,12 +28,13 @@ public class BossController : MonoBehaviour
     private BoxCollider _arenaBoxCollider;
     private _bossState _currentState = _bossState.isIdle;
     private int _maxHealth = 9;
+    [SerializeField]
     private int _currentHealth;
     private float _invulnerabilityTime;
     private float _attackCoolDown;
     private float _attackRange = 6.2f;
-    private float _timeToIdle = 5;
-    private float _timer;
+    [SerializeField]
+    private float _timeToIdle = 9;
     [SerializeField]
     private AudioClips _audioClips;
     [SerializeField]
@@ -59,7 +61,6 @@ public class BossController : MonoBehaviour
     }
     void Update()
     {
-        _timer += Time.deltaTime;
         IsPlayerInArena = Physics.CheckBox(transform.TransformPoint(_arenaBoxCollider.center), _arenaBoxCollider.size/2,
             Quaternion.identity, _playerLayerMask);
         if (IsPlayerInArena && !_fightStarted)
@@ -132,7 +133,7 @@ public class BossController : MonoBehaviour
 
         if (IsPlayerInArena)
             _currentState = _bossState.isAttacking;
-        _timeToIdle = 5;
+        _timeToIdle = 9;
         BossAnimation.SetBool("IsIdle", true);
     }
     
@@ -162,14 +163,17 @@ public class BossController : MonoBehaviour
             if(_timeToIdle <= 0)
                 _currentState = _bossState.isIdle;
         }
+        else
+        {
+            _timeToIdle = 9;
+        }
+        
         if (Vector3.Distance((LeftHand.transform.position + RightHand.transform.position)/2, PlayerController.instance.transform.position) <= _attackRange)
         {
             if (LeftSide)
                 StartCoroutine(Attack("Left"));
             else if (RightSide)
                 StartCoroutine(Attack("Right"));
-            //else
-                //StartCoroutine(Attack("Left"));
         }
 
         Head.transform.LookAt(new Vector3(PlayerController.instance.transform.position.x, 85, PlayerController.instance.transform.position.z));
@@ -199,7 +203,8 @@ public class BossController : MonoBehaviour
 
     private void EndLevel()
     {
-        LevelEnd.instance.EndLevel(_timer);
+        LevelEnd.instance.EndLevel();
+        BlackScreen.SetActive(false);
         SwitchUI(false);
     }
 

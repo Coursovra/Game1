@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VictoryMusic: {fileID: 8300000, guid: 514c739ee4cce7f4c96388651e39e126, type: 3}
   ScaryMusic: {fileID: 8300000, guid: bdfd160589bac7445a91cd11aeadfa1b, type: 3}
-  ActionMusic: {fileID: 8300000, guid: dd966b6dbf55f4f4b90ad094a4c7b2ea, type: 3}
+  ActionMusic: {fileID: 8300000, guid: f76188c79b8482c438f5014d64a98770, type: 3}
   RightHandAttack: {fileID: 8300000, guid: 4f9e22bcdd7a5564286306f3a1f2d945, type: 3}
-  LeftHandAttack: {fileID: 8300000, guid: 76b43cbc303801b4eb3ec2917a0ab454, type: 3}
+  LeftHandAttack: {fileID: 8300000, guid: e02269dbe58163d44b647682d75dac1b, type: 3}

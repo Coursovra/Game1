@@ -13,8 +13,6 @@ public class LevelEnd : MonoBehaviour
     public Text ScoreText;
     public int RequiredCoins = 5;
     private bool _required;
-    [SerializeField]
-    private float _timer;
     #endregion
     private void Awake()
     {
@@ -22,9 +20,7 @@ public class LevelEnd : MonoBehaviour
     }
     void Update()
     {
-        if(!IsGameEnd)
-            _timer += 1 * Time.deltaTime;
-        if(_required)
+        if(_required && GameManager.instance.CurrentCoins < RequiredCoins)
             Required();
     }
 
@@ -33,13 +29,13 @@ public class LevelEnd : MonoBehaviour
         if (other.CompareTag("Player") && SceneManager.GetActiveScene().name != "LevelBoss")
         {
             if(GameManager.instance.CurrentCoins >= RequiredCoins)
-                EndLevel(_timer);
+                EndLevel();
             else
                 Required();
         }
     }
 
-    public void EndLevel(float timer)
+    public void EndLevel()
     {
         Time.timeScale = 0f;
         Cursor.visible = true;
@@ -51,10 +47,10 @@ public class LevelEnd : MonoBehaviour
             RequiredScreen.SetActive(false);
         ScoreScreen.SetActive(true);
         if(SceneManager.GetActiveScene().name != "LevelBoss")
-            ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + _timer + " seconds";
+            ScoreText.text = "Coins: " + GameManager.instance.CurrentCoins + "\n " + "Time: " + Mathf.RoundToInt(Time.timeSinceLevelLoad) + " seconds";
         else
         {
-            ScoreText.text = "Congratulations! \nTime: " + _timer + " seconds";
+            ScoreText.text = "Congratulations! \nTime: " + Mathf.RoundToInt(Time.timeSinceLevelLoad) + " seconds";
         }
     }
 
