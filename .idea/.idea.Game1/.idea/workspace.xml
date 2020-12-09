@@ -20,29 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b02f947-b1ce-427f-9f38-06d4e9d7ec53" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game1/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game1/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game1/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game1/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/LeftHandAttack.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/LeftHandAttack.mp3.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/LeftHandAttack2.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/LeftHandAttack2.mp3.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Eldorado/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MainMixer.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainMixer.mixer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level01.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level01.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Player/PlayerAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Player/PlayerAnimator.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level02.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level02.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LevelBoss.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LevelBoss.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectLevel.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectLevel.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AudioClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AudioClips.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelEnd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelEnd.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectLevel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectLevel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SelectLevel/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SelectLevel/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,10 +60,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HurtPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/KillPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossArenaController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DarknessController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HealthManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioClips.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossWeakPlaceCntroller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RightSideCheck.cs" />
@@ -94,6 +75,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelEnd.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BossController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       </list>
     </option>
   </component>
@@ -168,6 +151,7 @@
       <workItem from="1606467459636" duration="21203000" />
       <workItem from="1606551315645" duration="24262000" />
       <workItem from="1606642381185" duration="8819000" />
+      <workItem from="1607513759073" duration="324000" />
     </task>
     <servers />
   </component>

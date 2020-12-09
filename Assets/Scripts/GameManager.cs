@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !LevelEnd.instance.IsGameEnd)
+        if (Input.GetKeyDown(KeyCode.Escape) && !LevelEnd.instance.IsGameEnd)
+        {
             PauseUnpause();
+        }
     }
 
     public void Respawn()
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseUnpause()
     {
-        if (UIManager.instance.PauseScreen.activeInHierarchy ) //&& !LevelEnd.instance.IsGameEnd
+        if (UIManager.instance.PauseScreen.activeInHierarchy )
         {
             UIManager.instance.PauseScreen.SetActive(false);
             Time.timeScale = 1f;
@@ -80,7 +82,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             UI.SetActive(true);
         }
-        else //paused //if(!LevelEnd.instance.IsGameEnd)
+        else //paused
         {
             UIManager.instance.PauseScreen.SetActive(true);
             UIManager.instance.CloseOptions();
