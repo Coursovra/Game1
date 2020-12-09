@@ -22,6 +22,10 @@ public class LevelEnd : MonoBehaviour
     {
         if(_required && GameManager.instance.CurrentCoins < RequiredCoins)
             Required();
+        else
+        {
+            RequiredScreen.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
